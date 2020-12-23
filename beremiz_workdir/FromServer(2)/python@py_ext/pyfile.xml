@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<PyFile xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <variables/>
+  <globals>
+    <xhtml:p><![CDATA[
+import sys, string, getopt, socket
+
+from user.MesPacked import MesPacked
+from user.NodeInfo import NodeInfo
+from user.Nodes import Nodes
+from user.PLCGlobals import PLCGlobals
+from user.SocketClient import SocketClient
+
+def loadSettings(key, mesPacked):
+    if key==1:
+        if len(PLCGlobals.host) < 1:
+            return "localhost"
+        else:
+            return PLCGlobals.host
+    elif key==2:
+        if PLCGlobals.PORT < 1:
+            return mesPacked.port
+        else:
+            return PLCGlobals.PORT
+    else:
+        pass
+
+def set_socket_node(id_Node, id_Obj, d_value=0, idSubObj=0, host="", port=0):
+    global mesPacked
+    
+    if len(host)<1:
+        host = loadSettings(1, mesPacked)
+    if port<1:
+        port = loadSettings(2, mesPacked)
+    socketClient = SocketClient()
+    socketClient.set_socket_node(id_Node,id_Obj,socketClient.mesPacked.CODE_SINGLE_START,d_value)
+
+def load_socket_node(id_Node, id_Obj, idSubObj=0, host="", port=0):
+    global mesPacked
+
+    if len(host)<1:
+        host = loadSettings(1, mesPacked)
+    if port<1:
+        port = loadSettings(2, mesPacked)
+    socketClient = SocketClient()
+    d_value=socketClient.load_socket_node(id_Node, id_Obj)
+
+    return d_value
+
+
+]]></xhtml:p>
+  </globals>
+  <init>
+    <xhtml:p><![CDATA[
+print "python init section..."
+global mesPacked, nodes
+mesPacked=MesPacked()
+nodes=Nodes()
+]]></xhtml:p>
+  </init>
+  <cleanup>
+    <xhtml:p><![CDATA[
+]]></xhtml:p>
+  </cleanup>
+  <start>
+    <xhtml:p><![CDATA[
+messageErr="py_runtime start..."
+print "Debug: ", PLCGlobals.debug
+print "Bases: ", PLCGlobals.PATH
+print "Host: ", PLCGlobals.host
+print "Port ", PLCGlobals.PORT
+]]></xhtml:p>
+  </start>
+  <stop>
+    <xhtml:p><![CDATA[
+print "py_runtime stop"
+]]></xhtml:p>
+  </stop>
+</PyFile>

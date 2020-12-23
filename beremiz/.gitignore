@@ -1,0 +1,21 @@
+# Backup files #
+################
+*~
+
+# Directory files #
+###################
+/.idea/*
+
+# Compiled source #
+###################
+*.a
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.py[ocd]
+*.so
+*.pyc
+*.lst
+

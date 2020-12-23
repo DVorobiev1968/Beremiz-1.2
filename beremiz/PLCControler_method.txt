@@ -1,0 +1,171 @@
+﻿def GetFilePath(self):
+def GetProgramFilePath(self):
+def GetFilename(self):
+def SetFilePath(self, filepath):;#Change file path and save file name or create a default one if file path not defined
+def SetProjectProperties(self, name=None, properties=None, buffer=True):
+def GetProjectName(self, debug=False):
+def GetProjectProperties(self, debug=False):
+def GetProjectInfos(self, debug=False):
+def GetPouVariables(self, tagname, debug=False):
+def GetInstanceList(self, root, name, debug=False):
+def SearchPouInstances(self, tagname, debug=False):
+def GetPouInstanceTagName(self, instance_path, debug=False):
+def GetInstanceInfos(self, instance_path, debug=False):
+def DataTypeIsUsed(self, name, debug=False):
+def PouIsUsed(self, name, debug=False):
+def PouIsUsedBy(self, name, reference, debug=False):
+def GenerateProgram(self, filepath=None):
+def DebugAvailable(self):
+def ProgramTransferred(self):
+def GetChunkInfos(self, from_location, to_location):
+def ProjectAddDataType(self, datatype_name=None):
+def ProjectRemoveDataType(self, datatype_name):
+def ProjectAddPou(self, pou_name, pou_type, body_type):
+def ProjectChangePouType(self, name, pou_type):
+def GetPouXml(self, pou_name):
+def PastePou(self, pou_type, pou_xml):;Adds the POU defined by 'pou_xml' to the current project with type 'pou_type'
+def ProjectRemovePou(self, pou_name):
+def GetProjectMainConfigurationName(self):
+def ProjectAddConfiguration(self, config_name=None):
+def ProjectRemoveConfiguration(self, config_name):
+def ProjectAddConfigurationResource(self, config_name, resource_name=None):
+def ProjectRemoveConfigurationResource(self, config_name, resource_name):
+def ProjectAddPouTransition(self, pou_name, transition_name, transition_type):
+def ProjectRemovePouTransition(self, pou_name, transition_name):
+def ProjectAddPouAction(self, pou_name, action_name, action_type):
+def ProjectRemovePouAction(self, pou_name, action_name):
+def ChangeDataTypeName(self, old_name, new_name):
+def ChangePouName(self, old_name, new_name):
+def ChangePouTransitionName(self, pou_name, old_name, new_name):
+def ChangePouActionName(self, pou_name, old_name, new_name):
+def ChangePouVariableName(self, pou_name, old_name, new_name):
+def ChangeConfigurationName(self, old_name, new_name):
+def ChangeConfigurationResourceName(self, config_name, old_name, new_name):
+def GetPouDescription(self, name, debug=False):
+def SetPouDescription(self, name, description, debug=False):
+def GetPouType(self, name, debug=False):
+def GetSFCPous(self, debug=False):
+def GetPouBodyType(self, name, debug=False):
+def GetPouTransitions(self, pou_name, debug=False):
+def GetTransitionBodyType(self, pou_name, pou_transition, debug=False):
+def GetPouActions(self, pou_name, debug=False):
+def GetActionBodyType(self, pou_name, pou_action, debug=False):
+def ExtractVarLists(self, vars):
+def GetVariableDictionary(self, object_with_vars, tree=False, debug=False):
+def AddConfigurationGlobalVar(self, config_name, var_type, var_name,
+def SetConfigurationGlobalVars(self, name, vars):
+def GetConfigurationGlobalVars(self, name, debug=False):;#Extract variables defined in configuration
+def GetConfigurationVariableNames(self, config_name=None, debug=False):
+def SetConfigurationResourceGlobalVars(self, config_name, name, vars):
+def GetConfigurationResourceGlobalVars(self, config_name, name, debug=False):;            #Extract variables defined in configuration
+def GetConfigurationResourceVariableNames(
+def GetPouInterfaceVars(self, pou, tree=False, debug=False):;#Extract variables defined in interface
+def SetPouInterfaceVars(self, name, vars):
+def SetPouInterfaceReturnType(self, name, return_type):
+def UpdateProjectUsedPous(self, old_name, new_name):
+def UpdateEditedElementUsedVariable(self, tagname, old_name, new_name):
+def GetPouInterfaceReturnType(self, pou, tree=False, debug=False):
+def AddConfNodeTypesList(self, typeslist):;BlkLst = self.TotalTypesDict.setdefault(desc["name"], [])
+def ClearConfNodeTypes(self):
+def GetConfNodeDataTypes(self, exclude=None, only_locatables=False):
+def GetVariableLocationTree(self):
+def GetConfNodeGlobalInstances(self):
+def GetConfigurationExtraVariables(self):
+def GetBlockType(self, typename, inputs=None, debug=False):;#Function that returns the block definition associated to the block type given
+def GetBlockTypes(self, tagname="", debug=False):
+def GetFunctionBlockTypes(self, tagname="", debug=False):
+def GetBlockResource(self, debug=False):
+def GetDataTypes(self, tagname="", basetypes=True, confnodetypes=True, only_locatables=False, debug=False):
+def GetPou(self, typename, debug=False):
+def GetDataType(self, typename, debug=False):
+def GetDataTypeBaseType(self, datatype):
+def GetBaseType(self, typename, debug=False):
+def GetBaseTypes(self):;return the list of datatypes defined in IEC 61131-3.
+def IsOfType(self, typename, reference, debug=False):
+def IsEndType(self, typename):
+def IsLocatableDataType(self, datatype, debug=False):
+def IsLocatableType(self, typename, debug=False):
+def IsEnumeratedType(self, typename, debug=False):
+def IsSubrangeType(self, typename, exclude=None, debug=False):
+def IsNumType(self, typename, debug=False):
+def GetDataTypeRange(self, typename, debug=False):
+def GetSubrangeBaseTypes(self, exclude, debug=False):
+def GetEnumeratedDataValues(self, typename=None, debug=False):
+def ComputeDataTypeName(self, datatype):
+def ComputePouName(self, pou):
+def ComputePouTransitionName(self, pou, transition):
+def ComputePouActionName(self, pou, action):
+def ComputeConfigurationName(self, config):
+def ComputeConfigurationResourceName(self, config, resource):
+def GetElementType(self, tagname):
+def GetDataTypeInfos(self, tagname, debug=False):
+def SetDataTypeInfos(self, tagname, infos):
+def GetEditedElement(self, tagname, debug=False):
+def GetEditedElementName(self, tagname):
+def GetEditedElementType(self, tagname, debug=False):
+def GetEditedElementBodyType(self, tagname, debug=False):
+def GetEditedElementInterfaceVars(self, tagname, tree=False, debug=False):
+def GetEditedElementInterfaceReturnType(self, tagname, tree=False, debug=False):
+def SetEditedElementText(self, tagname, text):
+def GetEditedElementText(self, tagname, debug=False):
+def GetEditedElementTransitions(self, tagname, debug=False):
+def GetEditedElementActions(self, tagname, debug=False):
+def GetEditedElementVariables(self, tagname, debug=False):
+def GetEditedElementCopy(self, tagname, debug=False):
+def GetEditedElementInstancesCopy(self, tagname, blocks_id=None, wires=None, debug=False):
+def GenerateNewName(self, tagname, name, format, start_idx=0, exclude={}, debug=False):
+def PasteEditedElementInstances(self, tagname, text, new_pos, middle=False, debug=False):
+def GetEditedElementInstancesInfos(self, tagname, debug=False):
+def ClearEditedElementExecutionOrder(self, tagname):
+def ResetEditedElementExecutionOrder(self, tagname):
+def SetConnectionWires(self, connection, connector):
+def GetVarTypeObject(self, var_type):
+def AddEditedElementPouVar(self, tagname, var_type, name, **args):
+def AddEditedElementPouExternalVar(self, tagname, var_type, name):
+def ChangeEditedElementPouVar(self, tagname, old_type, old_name, new_type, new_name):
+def RemoveEditedElementPouVar(self, tagname, type, name):
+def AddEditedElementBlock(self, tagname, id, blocktype, blockname=None):
+def SetEditedElementBlockInfos(self, tagname, id, infos):
+def AddEditedElementVariable(self, tagname, id, var_type):
+def SetEditedElementVariableInfos(self, tagname, id, infos):
+def AddEditedElementConnection(self, tagname, id, connection_type):
+def SetEditedElementConnectionInfos(self, tagname, id, infos):
+def AddEditedElementComment(self, tagname, id):
+def SetEditedElementCommentInfos(self, tagname, id, infos):
+def AddEditedElementPowerRail(self, tagname, id, powerrail_type):
+def SetEditedElementPowerRailInfos(self, tagname, id, infos):
+def AddEditedElementContact(self, tagname, id):
+def SetEditedElementContactInfos(self, tagname, id, infos):
+def AddEditedElementCoil(self, tagname, id):
+def SetEditedElementCoilInfos(self, tagname, id, infos):
+def AddEditedElementStep(self, tagname, id):
+def SetEditedElementStepInfos(self, tagname, id, infos):
+def AddEditedElementTransition(self, tagname, id):
+def SetEditedElementTransitionInfos(self, tagname, id, infos):
+def AddEditedElementDivergence(self, tagname, id, divergence_type):
+def GetDivergenceType(self, divergence):
+def SetEditedElementDivergenceInfos(self, tagname, id, infos):
+def AddEditedElementJump(self, tagname, id):
+def SetEditedElementJumpInfos(self, tagname, id, infos):
+def AddEditedElementActionBlock(self, tagname, id):
+def SetEditedElementActionBlockInfos(self, tagname, id, infos):
+def RemoveEditedElementInstance(self, tagname, id):
+def GetEditedResourceVariables(self, tagname, debug=False):
+def SetEditedResourceInfos(self, tagname, tasks, instances):
+def GetEditedResourceInfos(self, tagname, debug=False):
+def OpenXMLFile(self, filepath):
+def SaveXMLFile(self, filepath=None):
+def SearchInProject(self, criteria):
+def SearchInPou(self, tagname, criteria, debug=False):
+def Copy(self, model):
+def CreateProjectBuffer(self, saved):
+def IsProjectBufferEnabled(self):
+def EnableProjectBuffer(self, enable):
+def BufferProject(self):
+def StartBuffering(self):
+def EndBuffering(self):
+def MarkProjectAsSaved(self):
+def ProjectIsSaved(self):
+def LoadPrevious(self):
+def LoadNext(self):
+def GetBufferState(self):

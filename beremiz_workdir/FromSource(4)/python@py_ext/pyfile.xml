@@ -1,0 +1,629 @@
+<?xml version='1.0' encoding='utf-8'?>
+<PyFile xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <variables>
+    <variable name="Test_Python_Var" type="INT" initial="4"/>
+    <variable name="Second_Python_Var" type="INT" initial="5"/>
+  </variables>
+  <globals>
+    <xhtml:p><![CDATA[
+import sys, os, io, csv, copy
+
+def print_message(messageErr, key):
+    if PLCGlobals.debug <= key:
+        print "{:1d}".format(key), "{:<40s}".format(messageErr)
+        sys.stdout.flush()
+
+
+def open_dict(fbID):
+    i_status = fbs.get_val(fbID, "status_fb")
+    source = fbs.get_val(fbID, "source_fb")
+
+    if (i_status == PLCGlobals.OPEN_CSV_OK):
+        messageErr = "FBID: {0:d};open_dict():OPEN_CSV_OK;".format(fbID)
+        try:
+            source.seek(0)
+            reader = csv.DictReader(source, delimiter=';', quotechar=';',
+                                    quoting=csv.QUOTE_MINIMAL)
+            i_status = PLCGlobals.OPEN_DICT_OK
+            fbs.set_val(fbID, "status_fb", i_status)
+            fbs.set_val(fbID, "reader_fb", reader)
+            messageErr = "{0:<20s};source:{1:<15s},reader:{2:<15s},i_status:{3:#b}".format(messageErr, source, reader,i_status)
+            print_message(messageErr, PLCGlobals.INFO)
+        except (StopIteration) as err:
+            Type, Value, Trace = sys.exc_info()
+            i_status = PLCGlobals.OPEN_DICT_FAIL
+            messageErr = ('Error: open_dict():FBID:{0:d};Type:{1:<20s},'
+                          'Value:{2:<20s},Trace:{3:<30s};'
+                          'i_status:{4:#b}'.format(fbID, Type, Value,Trace, i_status))
+            fbs.set_val(fbID, "status_fb", i_status)
+            fbs.set_val(fbID, "messageErr_fb", messageErr)
+
+            print_message(messageErr, PLCGlobals.ERROR)
+    return i_status
+
+
+def close_dict(fbID):
+    source = fbs.get_val(fbID, "source_fb")
+    source.close()
+
+def convert_str_1(val_str):
+    for i in val_str:
+        print "{0:#x}".format(ord(i))
+
+def convert_str(val_str):
+    out_str=val_str.replace(chr(0x2c),chr(0x2e))
+    out_str=out_str.replace(chr(0x20), '')
+    return out_str
+
+def set_val_row(nameFile,name_field,value):
+    i_status = fbs.get_val_fileID(nameFile, "status_fb")
+    if i_status == None:
+        return PLCGlobals.WRITE_FAIL
+    fields=fbs.get_val_fileID(nameFile, "fields_fb")
+    fbID=fbs.get_val_fileID(nameFile, "id_fb")
+    row_writer = fbs.get_val_fileID(nameFile, "row_writer_fb")
+    writer=fbs.get_val_fileID(nameFile,"writer_fb")
+    count_field=fbs.get_val_fileID(nameFile,"count_field_fb")
+    if count_field < 1:
+        fields.append(name_field)
+        # count_field=count_field+1
+        fbs.set_val(fbID,"fields_fb",fields)
+        # fbs.set_val(fbID,"count_field_fb",count_field)
+    else:
+        if name_field not in fields:
+            fields.append(name_field)
+            # count_field=count_field+1
+            fbs.set_val(fbID,"fields_fb",fields)
+            # fbs.set_val(fbID,"count_field_fb",count_field)
+    messageErr = "FBID:{0:d};nameFile:{1:<10s};get_val_row: i_status:{2:#b}".format(fbID,nameFile,int(i_status))
+    print_message(messageErr, PLCGlobals.INFO)
+    d = {name_field: float(value)}
+    row_writer.update(d)
+    fbs.set_val(fbID,"row_writer_fb",row_writer)
+    return PLCGlobals.WRITE_OK
+
+def get_val_row(nameFile,name_field):
+    val = 0.0
+    fbID=FBID
+    i_status = fbs.get_val_fileID(nameFile, "status_fb")
+    if i_status==None:
+        return val
+    row = fbs.get_val_fileID(nameFile, "row_fb")
+    fbID=fbs.get_val_fileID(nameFile, "id_fb")
+    messageErr = "FBID:{0:d};nameFile:{1:<10s};get_val_row: i_status:{2:#b}/{3:#b}".format(fbID,nameFile,int(i_status), PLCGlobals.NEXT_OK)
+    print_message(messageErr, PLCGlobals.INFO)
+    bit_and = i_status & PLCGlobals.NEXT_OK
+    if (bit_and >= PLCGlobals.NEXT_OK):
+        messageErr = "Get row.get({0:<10s})".format(name_field)
+        try:
+            val = float(convert_str(row.get(name_field)))
+            i_status = PLCGlobals.READ_OK
+            fbs.set_val(fbID, "status_fb", i_status)
+            messageErr = "{0:<30s}: value:{1:.10f}".format(messageErr, val)
+            print_message(messageErr, PLCGlobals.INFO)
+        except (StopIteration) as err:
+            Type, Value, Trace = sys.exc_info()
+            i_status = PLCGlobals.READ_FAIL
+            messageErr = ('FBID:{0:d};Type:{1:<20s},Value:{2:<20s},'
+                          'Type:{3:<30s};i_status:{4:#b}'.format(int(fbID), Type,Value,Trace, i_status))
+            fbs.set_val(fbID, "status_fb", i_status)
+            fbs.set_val(fbID, "messageErr_fb", messageErr)
+            print_message(messageErr, PLCGlobals.ERROR)
+    return val
+
+def next_row(fbID):
+    global fbs
+
+    reader = fbs.get_val(fbID, "reader_fb")
+    i_status = fbs.get_val(fbID, "status_fb")
+    if (i_status == None):
+        i_status = PLCGlobals.NEXT_FAIL
+        fbs.set_val(fbID, "status_fb", i_status)
+        return i_status
+    messageErr = "FBID:{0:d};next_row: i_status:{1:#b}/{2:#b}".format(fbID, int(i_status), PLCGlobals.OPEN_DICT_OK)
+    print_message(messageErr, PLCGlobals.INFO)
+    bit_and = i_status & PLCGlobals.OPEN_DICT_OK
+    if (bit_and >= PLCGlobals.OPEN_DICT_OK):
+        try:
+            row = reader.next()
+            line_num = reader.line_num
+            i_status = PLCGlobals.NEXT_OK
+            messageErr = "{0:<15s}; i_status:{1:#b}".format(messageErr, i_status)
+            fbs.set_val(fbID, "reader_fb", reader)
+            fbs.set_val(fbID, "row_fb", row)
+            fbs.set_val(fbID, "line_num", line_num)
+            fbs.set_val(fbID, "status_fb", i_status)
+            fbs.set_val(fbID, "messageErr", messageErr)
+            print_message(messageErr, PLCGlobals.INFO)
+        except (StopIteration) as err:
+            Type, Value, Trace = sys.exc_info()
+            i_status = PLCGlobals.NEXT_FAIL
+            messageErr = ('{0:<15s};Type:{1:<20s},Value:{2:<20s},Type:{3:<30s};'
+                          'i_status:{4:#b}'.format(messageErr,Type, Value,Trace, i_status))
+            fbs.set_val(fbID, "status_fb", i_status)
+            fbs.set_val(fbID, "messageErr_fb", messageErr)
+            print_message(messageErr, PLCGlobals.ERROR)
+    return i_status
+
+
+def read_file(name):
+    buff_str = ''
+    f_size = fbs.get_val(fbID, "f_size")
+    n_pos = fbs.get_val(fbID, "n_pos")
+
+    if n_pos < f_size:
+        try:
+            with open(name, "r") as f:
+                f.seek(n_pos, io.SEEK_SET)
+                buff_str = f.readline()
+                n_pos = f.tell()
+                fbs.set_val(fbID, "n_pos", n_pos)
+                fbs.set_val(fbID, "status_fb", PLCGlobals.READ_OK)
+                f.close()
+        except (NameError) as err:
+            Type, Value, Trace = sys.exc_info()
+            messageErr = "read_file: Error read file: {0:<30},Type:{1:<10},Value:{2:<10},Trace:{3:<10}".format(
+                name, Type, Value, Trace)
+            fbs.set_val(fbID, "status_fb", PLCGlobals.READ_FAIL)
+            fbs.set_val(fbID, "messageErr_fb", messageErr)
+            print_message(messageErr, PLCGlobals.ERROR)
+    return buff_str
+
+
+def read_param_file(name):
+    file_path = os.path.abspath(name)
+    try:
+        f_size = os.path.getsize(file_path)
+    except:
+        f_size = -1
+    return f_size
+
+
+def readSignal(arg):
+    global fbs
+    buff_str = ""
+    nameFile = PLCGlobals.PATH + arg
+    val = 0.0
+
+    fbs.set_val(fbID, "id_fb", fbID)
+    fbs.set_val(fbID, "nameFile", arg)
+    f_size = fbs.get_val(fbID, "f_size")
+    n_pos = fbs.get_val(fbID, "n_pos")
+
+    if (f_size == 0):
+        f_size = read_param_file(nameFile)
+        fbs.set_val(fbID, "f_size", f_size)
+
+    messageErr = "FBID:{0:<10d}, readSignal starting arg:{1:<20s}, f_size:{2:d}".format(fbID, nameFile, f_size)
+
+    fbs.set_val(fbID, "messageErr_fb", messageErr)
+    print_message(messageErr, PLCGlobals.INFO)
+    if f_size > 0 and n_pos < f_size:
+        buff_str = read_file(nameFile)
+        n_pos = fbs.get_val(fbID, "n_pos")
+        val = float(convert_str(buff_str))
+        fbs.set_val(fbID, "status_fb", PLCGlobals.READ_OK)
+        messageErr = messageErr + " val: " + "{:.3f}".format(val)
+        print_message(messageErr, PLCGlobals.INFO)
+    else:
+        if f_size < 0:
+            fbs.set_val(fbID, "status_fb", PLCGlobals.READ_FAIL)
+            messageErr = messageErr + " Error open file: " + "{:<30}".format(nameFile)
+            print_message(messageErr, PLCGlobals.ERROR)
+        else:
+            fbs.set_val(fbID, "status_fb", PLCGlobals.FILE_EOF)
+            messageErr = messageErr + ": EOF:"
+            print_message(messageErr, PLCGlobals.WARNING)
+    return val
+
+def writeCSV(arg):
+    nameFile = PLCGlobals.PATH +prefixOUTFile+ arg
+    outFile=fbs.get_val_fileID(arg,"nameFile")
+    fbID=fbs.get_val_fileID(arg,"id_fb")
+    messageErr = "FBID:{0:<10d}, writeCSV starting arg:{1:<20s}".format(fbID, arg)
+    if outFile == None:
+        messageErr = "{0:<20s}: File: {1:<30} not found".format(messageErr, nameFile)
+        i_status = PLCGlobals.FILE_NOT_FOUND
+        print_message(messageErr, PLCGlobals.ERROR)
+        return i_status
+    else:
+        count_field=fbs.get_val_fileID(arg,"count_field_fb")
+        fieldNames=fbs.get_val_fileID(arg,"fields_fb")
+        row_writer=fbs.get_val_fileID(arg,"row_writer_fb")
+        write_pos=fbs.get_val_fileID(arg,"write_pos")
+        try:
+            if len(fieldNames) == 0:
+                i_status=PLCGlobals.SIGNAL_NOT_CONNECT
+                messageErr = "{0:<20s}: signal not connect: {1:d}".format(messageErr, i_status)
+                print_message(messageErr, PLCGlobals.ERROR)
+                return i_status
+            if len(fieldNames) > count_field:
+                out_file=open(nameFile, "w+")
+                writer = csv.DictWriter(out_file, delimiter=';', fieldnames=fieldNames)
+                out_file.seek(0,io.SEEK_SET)
+                writer.writeheader()
+                write_pos=out_file.tell()
+                count_field=count_field+1
+                fbs.set_val(fbID, "count_field_fb", count_field)
+                fbs.set_val(fbID, "writer_fb", writer)
+                fbs.set_val(fbID, "outFile_fb", out_file)
+            else:
+                out_file=fbs.get_val(fbID,"outFile_fb")
+                writer=fbs.get_val(fbID,"writer_fb")
+
+            out_file.seek(write_pos,io.SEEK_SET)
+            writer.writerow(row_writer)
+            write_pos=out_file.tell()
+            i_status=PLCGlobals.SAVE_CSV_OK
+            fbs.set_val(fbID, "write_pos", write_pos)
+            fbs.set_val(fbID, "status_fb", i_status)
+            print_message(messageErr, PLCGlobals.INFO)
+        except (IOError) as err:
+            Type, Value, Trace = sys.exc_info()
+            messageErr = "{0:<20s}: Error write file: {1:<30},Type:{2:<10},Value:{3:<10},Trace:{4:<10}".format(
+                messageErr, nameFile, Type, Value, Trace)
+            i_status = PLCGlobals.SAVE_CSV_FAIL
+            fbs.set_val(fbID, "messageErr_fb", messageErr)
+            fbs.set_val(fbID, "status_fb", i_status)
+            print_message(messageErr, PLCGlobals.ERROR)
+        return i_status
+
+def openCSV(arg):
+    fbID=FBID
+    nameFile = PLCGlobals.PATH + arg
+    messageErr = "FBID:{0:<10d}, openCSV starting arg:{1:<20s}".format(fbID, nameFile)
+    f_size = read_param_file(nameFile)
+    messageErr = "{0:s};{1:d}".format(messageErr,f_size)
+    print_message(messageErr, PLCGlobals.INFO)
+    if (f_size > 0):
+        try:
+            source = open(nameFile, "r")
+            i_status = PLCGlobals.OPEN_CSV_OK
+            reader = csv.DictReader(source, delimiter=';', quotechar=';', quoting=csv.QUOTE_MINIMAL)
+            fbs.set_val(fbID, "id_fb",fbID)
+            fbs.set_val(fbID, "nameFile", arg)
+            fbs.set_val(fbID, "f_size", f_size)
+            fbs.set_val(fbID, "source_fb", source)
+            fbs.set_val(fbID, "status_fb", i_status)
+            fbs.set_val(fbID, "reader_fb", reader)
+            # fields_fb=reader.fieldnames
+            # fbs.set_val(fbID, "fields_fb", fields_fb)
+        except (IOError) as err:
+            Type, Value, Trace = sys.exc_info()
+            messageErr = "{0:<20s}: Error open file: {1:<30},Type:{2:<10},Value:{3:<10},Trace:{4:<10}".format(
+                messageErr, nameFile, Type, Value, Trace)
+            i_status = PLCGlobals.OPEN_CSV_FAIL
+            fbs.set_val(fbID, "messageErr_fb", messageErr)
+            fbs.set_val(fbID, "status_fb", i_status)
+            print_message(messageErr, PLCGlobals.ERROR)
+            return i_status
+    else:
+        i_status = PLCGlobals.OPEN_CSV_FAIL
+        messageErr = "{0:<20s}: open file: {1:<30} it`s Empty!".format(messageErr, nameFile)
+        fbs.set_val(fbID, "messageErr_fb", messageErr)
+        fbs.set_val(fbID, "status_fb", i_status)
+        return i_status
+
+    i_status = open_dict(fbID)
+    bit_and = i_status & PLCGlobals.OPEN_DICT_OK
+    if (bit_and == PLCGlobals.OPEN_DICT_FAIL):
+        messageErr = "{0:<40s}: Error open_dict(): {1:#b}".format(messageErr, i_status)
+        print_message(messageErr, PLCGlobals.ERROR)
+    else:
+        i_status = PLCGlobals.OPEN_DICT_OK
+        messageErr = "{0:<40s};status:{1:#b};fbs:{2:s}".format(messageErr, i_status,fbs.list_fb)
+        print_message(messageErr, PLCGlobals.INFO)
+    return i_status
+
+
+def readSignalCSV(status,nameFile):
+    val = 0.0
+    i_status=int(status)
+    fbID=fbs.get_val_fileID(nameFile,"id_fb")
+    messageErr = "FBID:{0:<10d}, readSignalCSV starting arg:{1:#b}".format(int(fbID), i_status)
+
+    fbs.set_val(fbID, "messageErr_fb", messageErr)
+    print_message(messageErr, PLCGlobals.INFO)
+
+    messageErr = "readSignalCSV:{0:#b}/PLCGlobals.OPEN_DICT_OK:{1:#b}".format(i_status, PLCGlobals.OPEN_DICT_OK)
+    print_message(messageErr, PLCGlobals.INFO)
+    bit_and = i_status & PLCGlobals.OPEN_DICT_OK
+    if (bit_and >= PLCGlobals.OPEN_DICT_OK):
+        i_status = next_row(fbID)
+        line_num = fbs.get_val(fbID, "line_num")
+        if line_num != None:
+            messageErr = "{0:<15s};line_num:{1:d},i_status:{2:#b}".format(messageErr, int(line_num), i_status)
+        else:
+            messageErr = "{0:<15s};i_status:{1:#b}".format(messageErr,i_status)
+
+        fbs.set_val(fbID, "status_fb", i_status)
+        print_message(messageErr, PLCGlobals.INFO)
+    else:
+        messageErr = "readSignalCSV:Error open file:{:<30}".format(nameFile)
+        print_message(messageErr, PLCGlobals.ERROR)
+    return i_status
+
+
+class fb:
+    messageErr=""
+    def __init__(self):
+        key = ['id_fb',
+               'nameFile',
+               'n_pos',
+               'write_pos',
+               'line_num',
+               'f_size',
+               'count_field_fb',
+               'source_fb',
+               'outFile_fb',
+               'reader_fb',
+               'writer_fb',
+               'fields_fb',
+               'row_fb',
+               'row_writer_fb',
+               'status_fb',
+               'messageErr_fb']
+        value = ['0',
+                 '_Temporary.csv',
+                 '0',
+                 '0',
+                 '0',
+                 '0',
+                 '0',
+                 None,
+                 None,
+                 None,
+                 [],
+                 [],
+                 {},
+                 {},
+                 '0',
+                 'Initialize...']
+        self.dict_fb = dict(zip(key, value))
+        self.list_fb = []
+
+    def __del__(self):
+        length = len(self.list_fb)
+        try:
+            for i in range(length):
+                nameFile=self.list_fb[i]['nameFile']
+                source_fb=self.list_fb[i]['source_fb']
+                if source_fb != None:
+                    source_fb.close()
+                outFile_fb=self.list_fb[i]['outFile_fb']
+                if outFile_fb !=None:
+                    outFile_fb.close()
+
+        except:
+            Type, Value, Trace = sys.exc_info()
+            self.messageErr = ('"Error close file: {0:<30},Type:{2:<10}'
+            ',Value:{3:<10},Trace:{4:<10}"'.format(nameFile, Type, Value, Trace))
+            i_status = PLCGlobals.SAVE_CSV_FAIL
+            print_message(messageErr, PLCGlobals.ERROR)
+
+
+    def set_dict_val(self, key, value):
+        b_status = False
+        if self.dict_fb.get(key):
+            self.dict_fb[key] = value
+            b_status = True
+        return b_status
+
+    def add_item_dict(self, key, item):
+        length=len(item)
+        self.dict_fb[key]=copy.deepcopy(item)
+
+    def add_item_fb(self, item):
+        length = len(self.list_fb)
+        self.add_item_dict('reader_fb',[])
+        self.add_item_dict('writer_fb',[])
+        self.add_item_dict("fields_fb",[])
+        self.add_item_dict("row_fb",{})
+        self.add_item_dict("row_writer_fb", {})
+
+        i_status = PLCGlobals.UPDATE_FAIL
+        if (length == 0):
+            dict_temp = item.copy()
+            self.list_fb.append(dict_temp)
+        else:
+            for i in range(length):
+                dict_temp = self.list_fb[i].copy()
+                if dict_temp['id_fb'] == item['id_fb']:
+                    self.list_fb[i].update(item)
+                    i_status = PLCGlobals.UPDATE_OK
+            if (i_status == PLCGlobals.UPDATE_FAIL):
+                dict_temp = item.copy()
+                self.list_fb.append(dict_temp)
+
+    def get_val(self, name_FBID, name_field):
+        result = None
+        length = len(self.list_fb)
+        typeReal=0
+        for i in range(length):
+            if self.list_fb[i]['id_fb'] == name_FBID:
+                for case in switch(name_field):
+                    if case("nameFile"): pass
+                    if case("messageErr_fb"): pass
+                    if case("fields_fb"):
+                        result = self.list_fb[i].get(name_field)
+                        break
+                    if case("id_fb"): pass
+                    if case("n_pos"): pass
+                    if case("f_size"):
+                        result = long(self.list_fb[i].get(name_field))
+                        typeReal=1
+                        break
+                    if case("status_fb"): pass
+                    if case("line_num"): pass
+                    if case("count_field_fb"):
+                        result = int(self.list_fb[i].get(name_field))
+                        typeReal=1
+                        break
+                    if case():
+                        result = self.list_fb[i].get(name_field)
+        if (result==None and typeReal==1):
+            print "fb.get_val:".format(result,typeReal)
+            result=0
+        return result
+
+    def get_val_fileID(self, nameFile, name_field):
+        result = None
+        length = len(self.list_fb)
+        for i in range(length):
+            if self.list_fb[i]['nameFile'] == nameFile:
+                for case in switch(name_field):
+                    if case("messageErr_fb"): pass
+                    if case("fields_fb"):
+                        result = self.list_fb[i].get(name_field)
+                        break
+                    if case("id_fb"): pass
+                    if case("n_pos"): pass
+                    if case("f_size"):
+                        result = long(self.list_fb[i].get(name_field))
+                        break
+                    if case("status_fb"): pass
+                    if case("line_num"): pass
+                    if case("count_field_fb"):
+                        result = int(self.list_fb[i].get(name_field))
+                        break
+                    if case():
+                        result = self.list_fb[i].get(name_field)
+        return result
+
+    def set_val(self, name_FBID, name_field, value):
+        i_status = PLCGlobals.SET_VAL_FAIL
+        length = len(self.list_fb)
+        for i in range(length):
+            if self.list_fb[i]['id_fb'] == name_FBID:
+                for case in switch(name_field):
+                    if case("nameFile"):
+                        self.list_fb[i]["nameFile"] = str(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("messageErr_fb"):
+                        self.list_fb[i]["messageErr_fb"] = str(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("id_fb"):
+                        self.list_fb[i]["id_fb"] = long(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("line_num"):
+                        self.list_fb[i]["line_num"] = int(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("n_pos"):
+                        self.list_fb[i]["n_pos"] = long(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("write_pos"):
+                        self.list_fb[i]["write_pos"] = long(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("f_size"):
+                        self.list_fb[i]["f_size"] = long(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("count_field_fb"):
+                        self.list_fb[i]["count_field_fb"] = int(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("status_fb"):
+                        self.list_fb[i]["status_fb"] = int(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("fields_fb"):
+                        self.list_fb[i]["fields_fb"]=value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("row_fb"):
+                        self.list_fb[i]["row_fb"] = value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("row_writer_fb"):
+                        self.list_fb[i]["row_writer_fb"] = value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("source_fb"):
+                        self.list_fb[i]["source_fb"] = value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("outFile_fb"):
+                        self.list_fb[i]["outFile_fb"] = value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("reader_fb"):
+                        self.list_fb[i]["reader_fb"] = value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("writer_fb"):
+                        self.list_fb[i]["writer_fb"] = value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("fields_fb"):
+                        self.list_fb[i]["fields_fb"] = value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+        if i_status == PLCGlobals.SET_VAL_FAIL and "id_fb" in name_field:
+            self.set_dict_val("id_fb", value)
+            self.add_item_fb(self.dict_fb)
+        return i_status
+
+    def print_dict_fb(self):
+        print self.dict_fb
+
+    def print_list_fb(self):
+        print self.list_fb
+
+
+class switch(object):
+    def __init__(self, value):
+        self.value = value
+        self.fall = False
+
+    def __iter__(self):
+        yield self.match
+        raise StopIteration
+
+    def match(self, *args):
+        if self.fall or not args:
+            return True
+        elif self.value in args:
+            self.fall = True
+            return True
+        return False
+
+
+]]></xhtml:p>
+  </globals>
+  <init>
+    <xhtml:p><![CDATA[
+global fbs
+
+print "python init section..."
+fbs = fb()
+print fbs
+]]></xhtml:p>
+  </init>
+  <cleanup>
+    <xhtml:p><![CDATA[
+]]></xhtml:p>
+  </cleanup>
+  <start>
+    <xhtml:p><![CDATA[
+global prefixOUTFile
+messageErr="py_runtime start..."
+print "Debug:", PLCGlobals.debug
+if len(PLCGlobals.PATH)<1:
+    PLCGlobals.PATH='C:\\Users\\user\\Desktop\\BeremizExamples\\base_tests\\Bases\\'
+print "Bases: ", PLCGlobals.PATH
+prefixOUTFile = "OUT_"
+
+]]></xhtml:p>
+  </start>
+  <stop>
+    <xhtml:p><![CDATA[
+print "py_runtime stop"
+]]></xhtml:p>
+  </stop>
+</PyFile>

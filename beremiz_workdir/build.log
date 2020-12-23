@@ -1,0 +1,7 @@
+set_load_param:=CONCAT('load_socket_node(',INT_TO_STRING(id_Node),',',INT_TO_STRING(id_Obj),')');
+set_load_param:=CONCAT('load_socket_node(',INT_TO_STRING(id_Node),',',INT_TO_STRING(id_Obj),')');
+   
+call_method:=CONCAT('load_socket_node(',INT_TO_STRING(id_Node),',',INT_TO_STRING(id_Obj),')');
+load_socket_node(id_Node,id_Obj)
+
+call_method:=CONCAT('set_socket_node(',INT_TO_STRING(id_Node),',',INT_TO_STRING(id_Obj),',',REAL_TO_STRING(d_value)')');

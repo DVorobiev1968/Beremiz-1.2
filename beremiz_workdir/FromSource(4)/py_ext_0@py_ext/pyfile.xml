@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<PyFile xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <variables>
+    <variable name="debug" type="INT" initial="3" desc="Print Debug 1:info+warning+error, 2:warning+error, 3:error, 4:none"/>
+    <variable name="PATH" type="STRING" initial="C:\\users\\user\\Beremiz\\beremiz_workdir\\" desc="PATH to Source file"/>
+    <variable name="Grumpf" type="STRING" initial="Grumpf_value"/>
+    <variable name="i_status" type="INT" initial="1" desc="Error Code readSignal"/>
+    <variable name="i_status_CSV" type="INT" initial="1" desc="Error Code readSignalCSV"/>
+    <variable name="NameFile" type="STRING" initial="_1NJ20T001.csv" desc="File data"/>
+    <variable name="NameFileCSV" type="STRING" initial="unknow.csv" desc="File data"/>
+    <variable name="WRITE_OK" type="INT" desc="5-level"/>
+    <variable name="WRITE_FAIL" type="INT" desc="5-level"/>
+    <variable name="READ_OK" type="INT" desc="4-level"/>
+    <variable name="READ_FAIL" type="INT" desc="4-level"/>
+    <variable name="NEXT_OK" type="INT" desc="3-level"/>
+    <variable name="NEXT_FAIL" type="INT" desc="3-level"/>
+    <variable name="OPEN_DICT_OK" type="INT" initial="3" desc="2-level"/>
+    <variable name="OPEN_DICT_FAIL" type="INT" desc="2-level"/>
+    <variable name="OPEN_CSV_OK" type="INT" desc="1-level"/>
+    <variable name="OPEN_CSV_FAIL" type="INT" desc="1-level"/>
+    <variable name="UPDATE_OK" type="INT"/>
+    <variable name="FILE_EOF" type="INT" desc="End of file"/>
+    <variable name="UPDATE_FAIL" type="INT"/>
+    <variable name="SET_VAL_OK" type="INT"/>
+    <variable name="SET_VAL_FAIL" type="INT"/>
+    <variable name="FILE_NOT_FOUND" type="INT"/>
+    <variable name="CLOSE_CSV_OK" type="INT"/>
+    <variable name="CLOSE_CSV_FAIL" type="INT"/>
+    <variable name="SAVE_CSV_OK" type="INT"/>
+    <variable name="SAVE_CSV_FAIL" type="INT"/>
+    <variable name="SIGNAL_NOT_CONNECT" type="INT"/>
+    <variable name="INFO" type="INT" initial="1" desc="Debug message level"/>
+    <variable name="WARNING" type="INT" initial="2" desc="Debug message level"/>
+    <variable name="ERROR" type="INT" initial="3" desc="Debug message level"/>
+  </variables>
+  <globals>
+    <xhtml:p><![CDATA[
+print "All python PLC load globals variables: ", PLCGlobalsDesc
+print "Current extention name: ", __ext_name__
+]]></xhtml:p>
+  </globals>
+  <init>
+    <xhtml:p><![CDATA[
+
+PLCGlobals.SIGNAL_NOT_CONNECT= 0b1111111111
+PLCGlobals.FILE_NOT_FOUND=     0b1111111110
+PLCGlobals.CLOSE_CSV_OK =      0b111111111
+PLCGlobals.CLOSE_CSV_FAIL =    0b111111110
+PLCGlobals.SAVE_CSV_OK =       0b11111111
+PLCGlobals.SAVE_CSV_FAIL =     0b11111110
+
+PLCGlobals.FILE_EOF = 0b1111111
+PLCGlobals.WRITE_OK = 0b111111
+PLCGlobals.WRITE_FAIL = 0b011111
+PLCGlobals.READ_OK = 0b11111
+PLCGlobals.READ_FAIL = 0b01111
+PLCGlobals.NEXT_OK=0b111
+PLCGlobals.NEXT_FAIL=0b011
+PLCGlobals.OPEN_DICT_OK = 0b11
+PLCGlobals.OPEN_DICT_FAIL = 0b01
+PLCGlobals.OPEN_CSV_OK = 0b1
+PLCGlobals.OPEN_CSV_FAIL = 0
+PLCGlobals.UPDATE_OK = 0b10
+PLCGlobals.UPDATE_FAIL = 0b01
+PLCGlobals.SET_VAL_OK = 0b10
+PLCGlobals.SET_VAL_FAIL = 0b01
+]]></xhtml:p>
+  </init>
+  <cleanup>
+    <xhtml:p><![CDATA[
+]]></xhtml:p>
+  </cleanup>
+  <start>
+    <xhtml:p><![CDATA[
+]]></xhtml:p>
+  </start>
+  <stop>
+    <xhtml:p><![CDATA[
+]]></xhtml:p>
+  </stop>
+</PyFile>

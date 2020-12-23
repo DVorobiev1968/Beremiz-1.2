@@ -1,0 +1,231 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Beremiz and Beremiz_service connectors &#8212; Beremiz 1.1rc1 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Trace POUs instances variable" href="debug.html" />
+    <link rel="prev" title="Build PLC executable binary" href="build.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="debug.html" title="Trace POUs instances variable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="build.html" title="Build PLC executable binary"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Beremiz 1.1rc1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Beremiz’s user manual</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Beremiz and Beremiz_service connectors</a><ul>
+<li><a class="reference internal" href="#the-pyro-connector">The Pyro connector</a><ul>
+<li><a class="reference internal" href="#setup-a-pyro-ssl-connection">Setup a Pyro SSL connection</a><ul>
+<li><a class="reference internal" href="#tls-psk-with-stunnel">TLS-PSK with stunnel</a></li>
+<li><a class="reference internal" href="#client-setup-beremiz">Client setup (Beremiz)</a></li>
+<li><a class="reference internal" href="#server-setup-plc">Server setup (PLC)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-wamp-connector">The WAMP connector</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="build.html"
+                        title="previous chapter">Build PLC executable binary</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="debug.html"
+                        title="next chapter">Trace POUs instances variable</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/manual/connectors.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="beremiz-and-beremiz-service-connectors">
+<h1>Beremiz and Beremiz_service connectors<a class="headerlink" href="#beremiz-and-beremiz-service-connectors" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>To connect a PLC, Beremiz provides 2 types of connectors :</dt>
+<dd><ul class="first last simple">
+<li>a Pyro connector</li>
+<li>a WAMP connector</li>
+</ul>
+</dd>
+</dl>
+<p>To configure the connection, you have to set the <em>URI_location</em> in your project Config tab according to this documentation.</p>
+<div class="section" id="the-pyro-connector">
+<h2>The Pyro connector<a class="headerlink" href="#the-pyro-connector" title="Permalink to this headline">¶</a></h2>
+<p>Pyro is an advanced and powerful Distributed Object Technology system written entirely in Python.
+Beremiz_service spawns a Pyro server, serving a PLCObject (see runtime/PLCObject.py). Therefore, Beremiz acts as a Pyro client.</p>
+<p>TODO:: link to PLCObject API documentation</p>
+<dl class="docutils">
+<dt>URI_location :</dt>
+<dd><ul class="first last simple">
+<li>LOCAL:// is a facility that starts the PLC service locally and connect Beremiz to it via Pyro.
+This is intended for use in development stage.</li>
+<li>PYRO://&lt;ip:port&gt; normal connection to a remote PLC. PLC default port is 3000.</li>
+<li>PYROS://&lt;ip:port&gt; SSL connection to a remote PLC, see below.</li>
+</ul>
+</dd>
+</dl>
+<p>more information about Pyro can be found on <a class="reference external" href="http://pythonhosted.org//Pyro/1-intro.html">http://pythonhosted.org//Pyro/1-intro.html</a></p>
+<div class="section" id="setup-a-pyro-ssl-connection">
+<h3>Setup a Pyro SSL connection<a class="headerlink" href="#setup-a-pyro-ssl-connection" title="Permalink to this headline">¶</a></h3>
+<p>Pyro v3 has a limited TLS/SSL support based on m2crypto. Pyro v4 had dropped it.
+In order to have a full and reliable SSL, we recommand to use a TLS/SSL wrapper as nginx, stub or stunnel.</p>
+<div class="section" id="tls-psk-with-stunnel">
+<h4>TLS-PSK with stunnel<a class="headerlink" href="#tls-psk-with-stunnel" title="Permalink to this headline">¶</a></h4>
+<p>In this example, we setup a simple TLS-PSK connection according to rfc4279.
+This ciphersuite avoid the need for public key operations and certificate management.
+It is perfect for a performance-constrained environments with limited CPU power as a PLC.</p>
+<dl class="docutils">
+<dt>Needed :</dt>
+<dd><ul class="first last simple">
+<li>stunnel &gt;= 5.09</li>
+</ul>
+</dd>
+</dl>
+<p>verify openssl support for PSK cipher:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">ciphers</span> <span class="o">-</span><span class="n">v</span> <span class="s1">&#39;PSK&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="client-setup-beremiz">
+<h4>Client setup (Beremiz)<a class="headerlink" href="#client-setup-beremiz" title="Permalink to this headline">¶</a></h4>
+<p>You need to choose an identity for your client, here <em>client1</em>.
+generate a valid and strong key:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ echo client1:$(openssl rand -base64 48) &gt; pskclient1.txt
+</pre></div>
+</div>
+<p>write a stunnel client configuration file <em>stunnel-client.conf</em>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">stunnel</span><span class="o">-</span><span class="n">client</span><span class="o">.</span><span class="n">log</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">yes</span>
+
+<span class="p">[</span><span class="n">beremiz</span><span class="p">]</span>
+<span class="n">accept</span> <span class="o">=</span> <span class="mi">3002</span>
+<span class="n">connect</span> <span class="o">=</span> <span class="p">[</span><span class="n">PLC</span><span class="p">]:</span><span class="mi">3001</span>
+<span class="n">PSKidentity</span> <span class="o">=</span> <span class="n">client1</span>
+<span class="n">PSKsecrets</span> <span class="o">=</span> <span class="n">pskclient1</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>start stunnel client side:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">stunnel</span> <span class="n">stunnel</span><span class="o">-</span><span class="n">client</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>You could now connect beremiz with classic URI_location = PYRO://127.0.0.1:3002</p>
+</div>
+<div class="section" id="server-setup-plc">
+<h4>Server setup (PLC)<a class="headerlink" href="#server-setup-plc" title="Permalink to this headline">¶</a></h4>
+<p>import the client key in a keyfile psk.txt, concatening all client key.</p>
+<p>write a stunnel server  configuration file <em>stunnel-server.conf</em>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">stunnel</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">log</span>
+
+<span class="p">[</span><span class="n">beremiz</span><span class="p">]</span>
+<span class="n">accept</span> <span class="o">=</span> <span class="mi">3001</span>
+<span class="n">connect</span> <span class="o">=</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">3000</span>
+<span class="n">PSKsecrets</span> <span class="o">=</span> <span class="n">psk</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>start stunnel server side:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">stunnel</span> <span class="n">stunnel</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>more documentation on stunnel <a class="reference external" href="http://www.stunnel.org/docs.html">http://www.stunnel.org/docs.html</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="the-wamp-connector">
+<h2>The WAMP connector<a class="headerlink" href="#the-wamp-connector" title="Permalink to this headline">¶</a></h2>
+<p>WAMP is an open standard WebSocket subprotocol that provides two application messaging
+patterns in one unified protocol: Remote Procedure Calls + Publish &amp; Subscribe.</p>
+<p>Beremiz WAMP connector implementation uses Autobahn and crossbar.</p>
+<dl class="docutils">
+<dt>URI_location :</dt>
+<dd><ul class="first last simple">
+<li>WAMP://127.0.0.1:8888#Automation#2534667845</li>
+</ul>
+</dd>
+</dl>
+<p>more information about WAMP can be found on <a class="reference external" href="http://wamp.ws/">http://wamp.ws/</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="debug.html" title="Trace POUs instances variable"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="build.html" title="Build PLC executable binary"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Beremiz 1.1rc1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Beremiz’s user manual</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright is 21st century inquisition.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

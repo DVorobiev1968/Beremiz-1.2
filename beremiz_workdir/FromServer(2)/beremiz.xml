@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<BeremizRoot xmlns:xsd="http://www.w3.org/2001/XMLSchema" URI_location="LOCAL://">
+  <TargetType>
+    <Win32/>
+  </TargetType>
+  <Libraries Enable_Native_Library="true" Enable_SVGUI_Library="true" Enable_Python_Library="true"/>
+</BeremizRoot>

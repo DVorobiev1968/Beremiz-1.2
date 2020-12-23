@@ -1,0 +1,172 @@
+﻿
+def GetFilePath(self):;#Return file path if project is an open file
+def GetProgramFilePath(self):;#Return file path if project is an open file
+def GetFilename(self):;#Return file name and point out if file is up to date
+def SetFilePath(self, filepath):;#Change file path and save file name or create a default one if file path not defined
+def SetProjectProperties(self, name=None, properties=None, buffer=True):;#Change project properties
+def GetProjectName(self, debug=False):;#Return project name
+def GetProjectProperties(self, debug=False):;#Return project properties
+def GetProjectInfos(self, debug=False):;#Return project informations
+def GetPouVariables(self, tagname, debug=False):
+def GetInstanceList(self, root, name, debug=False):
+def SearchPouInstances(self, tagname, debug=False):;return []
+def GetPouInstanceTagName(self, instance_path, debug=False):;return factory.GetTagName()
+def GetInstanceInfos(self, instance_path, debug=False):;return var_infos,return None
+def DataTypeIsUsed(self, name, debug=False):;#Return if data type given by name is used by another data type or pou
+def PouIsUsed(self, name, debug=False):;#Return if pou given by name is used by another pou
+def PouIsUsedBy(self, name, reference, debug=False):;#Return if pou given by name is directly or undirectly used by the reference pou
+def GenerateProgram(self, filepath=None):; return "", errors, warnings
+def DebugAvailable(self):;return self.CurrentCompiledProject is not None
+def ProgramTransferred(self):
+def GetChunkInfos(self, from_location, to_location):;return infos
+def ProjectAddDataType(self, datatype_name=None):;#Project Pous management functions.Add a Data Type to Project
+def ProjectRemoveDataType(self, datatype_name):;#Remove a Data Type from project
+def ProjectAddPou(self, pou_name, pou_type, body_type):;#Add a Pou to Project
+def ProjectChangePouType(self, name, pou_type):
+def GetPouXml(self, pou_name):;return pou.tostring(),None
+def PastePou(self, pou_type, pou_xml):;Adds the POU defined by 'pou_xml' to the current project with type 'pou_type'
+def ProjectRemovePou(self, pou_name):;#Remove a Pou from project
+def GetProjectMainConfigurationName(self):;Return the name of the configuration if only one exist                return configurations[0].getname(),return None
+def ProjectAddConfiguration(self, config_name=None):;#Add a configuration to Project,return self.ComputeConfigurationName(config_name),return None
+def ProjectRemoveConfiguration(self, config_name):;#Remove a configuration from project
+def ProjectAddConfigurationResource(self, config_name, resource_name=None):;#Add a resource to a configuration of the Project, return self.ComputeConfigurationResourceName(config_name, resource_name),return None
+def ProjectRemoveConfigurationResource(self, config_name, resource_name):;#Remove a resource 
+def ProjectAddPouTransition(self, pou_name, transition_name, transition_type):;#Add a Transition to a Project Pou,return self.ComputePouTransitionName(pou_name, transition_name),return None
+def ProjectRemovePouTransition(self, pou_name, transition_name):;#Remove a Transition from a Project Pou
+def ProjectAddPouAction(self, pou_name, action_name, action_type):;#Add an Action to a Project Pou,return self.ComputePouActionName(pou_name, action_name),return None
+def ProjectRemovePouAction(self, pou_name, action_name):;#Remove an Action from a Project Pou
+def ChangeDataTypeName(self, old_name, new_name):;#Change the name of a pou
+def ChangePouName(self, old_name, new_name):;#Change the name of a pou
+def ChangePouTransitionName(self, pou_name, old_name, new_name):;#Change the name of a pou transition
+def ChangePouActionName(self, pou_name, old_name, new_name):;#Change the name of a pou action
+def ChangePouVariableName(self, pou_name, old_name, new_name):;#Change the name of a pou variable
+def ChangeConfigurationName(self, old_name, new_name):;#Change the name of a configuration
+def ChangeConfigurationResourceName(self, config_name, old_name, new_name):;#Change the name of a configuration resource
+def GetPouDescription(self, name, debug=False):;#Return the description of the pou given by its name,return pou.getdescription(),return ""
+def SetPouDescription(self, name, description, debug=False):;#Return the description of the pou given by its name
+def GetPouType(self, name, debug=False):;#Return the type of the pou given by its name,return pou.getpouType(),return None
+def GetSFCPous(self, debug=False):;#Return pous with SFC language
+def GetPouBodyType(self, name, debug=False):;#Return the body language of the pou given by its name,return pou.getbodyType(),return None
+def GetPouTransitions(self, pou_name, debug=False):;#Return the actions of a pou
+def GetTransitionBodyType(self, pou_name, pou_transition, debug=False):;#Return the actions of a pou,return transition.getbodyType(),return None
+def GetPouActions(self, pou_name, debug=False):;#Return the actions of a pou,return actions
+def GetActionBodyType(self, pou_name, pou_action, debug=False):;#Return the body language of the pou given by its name,return action.getbodyType(),return None
+def ExtractVarLists(self, vars):;#Extract varlists from a list of vars,return varlist_list
+def GetVariableDictionary(self, object_with_vars, tree=False, debug=False):;return variables
+def AddConfigurationGlobalVar(self, config_name, var_type, var_name,;#Add a global var to configuration to configuration
+def SetConfigurationGlobalVars(self, name, vars):;#Replace the configuration globalvars by those given
+def GetConfigurationGlobalVars(self, name, debug=False):;#Return the configuration globalvars, return self.GetVariableDictionary(configuration, debug), []
+def GetConfigurationVariableNames(self, config_name=None, debug=False):;#Return configuration variable names,return variables
+def SetConfigurationResourceGlobalVars(self, config_name, name, vars):;#Replace the resource globalvars by those given
+def GetConfigurationResourceGlobalVars(self, config_name, name, debug=False):;#Return the resource globalvars,return self.GetVariableDictionary(resource, debug),[]
+def GetConfigurationResourceVariableNames(self, config_name=None, resource_name=None, debug=False):;#Return resource variable names,return variables
+def GetPouInterfaceVars(self, pou, tree=False, debug=False):;#Return the interface for the given pou, return self.GetVariableDictionary(interface, tree, debug),return []
+def SetPouInterfaceVars(self, name, vars):;#Replace the Pou interface by the one given
+def SetPouInterfaceReturnType(self, name, return_type):;#Replace the return type of the pou given by its name (only for functions)
+def UpdateProjectUsedPous(self, old_name, new_name):
+def UpdateEditedElementUsedVariable(self, tagname, old_name, new_name):
+def GetPouInterfaceReturnType(self, pou, tree=False, debug=False):;#Return the return type of the given pou, return [factory.GetType(), factory.GetTree()], return factory.GetType(),return [None, ([], [])],return None.
+def AddConfNodeTypesList(self, typeslist):;#Function that add a new confnode to the confnode list
+def ClearConfNodeTypes(self):;#Function that clear the confnode list
+def GetConfNodeDataTypes(self, exclude=None, only_locatables=False):
+def GetVariableLocationTree(self):;return []
+def GetConfNodeGlobalInstances(self):;return []
+def GetConfigurationExtraVariables(self):;return global_vars
+def GetBlockType(self, typename, inputs=None, debug=False):;#Function that returns the block definition associated to the block type given,return blocktype_infos,return None
+def GetBlockTypes(self, tagname="", debug=False):;#Return Block types checking for recursion, return blocktypes, return self.TotalTypes
+def GetFunctionBlockTypes(self, tagname="", debug=False):;#Return Function Block types checking for recursion, return blocktypes
+def GetBlockResource(self, debug=False):;#Return Block types checking for recursion,return blocktypes
+def GetDataTypes(self, tagname="", basetypes=True, confnodetypes=True, only_locatables=False, debug=False):;#Return Data Types checking for recursion,return datatypes
+def GetPou(self, typename, debug=False):;#Return Data Type Object, return: project.getpou(typename), standardlibrary.getpou(typename), confnodetype["types"].getpou(typename), return None
+def GetDataType(self, typename, debug=False):; #Return Data Type Object, return project.getdataType(typename), result = confnodetype["types"].getdataType(typename), None
+def GetDataTypeBaseType(self, datatype):; #Return Data Type Object Base Type, return (basetype.getname(), basetype_type.upper(), basetype_content.getname(), basetype_content_type.upper(), return None
+def GetBaseType(self, typename, debug=False):;#Return Base Type of given possible derived type, return typename, self.GetBaseType(basetype, debug), return None
+def GetBaseTypes(self):;return the list of datatypes defined in IEC 61131-3.TypeHierarchy_list has a rough order to it (e.g. SINT, INT, DINT, ...),which makes it easy for a user to find a type in a menu. return [x for x, y in TypeHierarchy_list if not x.startswith("ANY")]
+def IsOfType(self, typename, reference, debug=False):; return BOOL, self.IsOfType(basetype, reference), self.GetDataTypeBaseType(datatype), BOOL
+def IsEndType(self, typename):; BOOL
+def IsLocatableDataType(self, datatype, debug=False):;return self.IsLocatableType(basetype_content.getname()), return self.IsLocatableType(array_base_type.getname(), debug), BOOL
+def IsLocatableType(self, typename, debug=False):; BOOL
+def IsEnumeratedType(self, typename, debug=False):
+def IsSubrangeType(self, typename, exclude=None, debug=False):; return self.IsSubrangeType(basetype_content_type, exclude, debug), return not self.IsOfType(self.GetDataTypeBaseType(datatype), exclude), BOOL
+def IsNumType(self, typename, debug=False):;return self.IsOfType(typename, "ANY_NUM", debug) or\ self.IsOfType(typename, "ANY_BIT", debug)
+def GetDataTypeRange(self, typename, debug=False):;return (basetype_content.range.getlower(), return self.GetDataTypeRange(basetype_content.getname(), debug),return None
+def GetSubrangeBaseTypes(self, exclude, debug=False):;#Return Subrange types, return subrange_basetypes
+def GetEnumeratedDataValues(self, typename=None, debug=False):;#Return Enumerated Values, return self.GetEnumeratedDataValues(basetype_content.getname(), debug), values.extend(confnodetype["types"].GetEnumeratedDataTypeValues())
+def ComputeDataTypeName(self, datatype):; Project Element tag name computation functions, Compute a data type name, return STRING
+def ComputePouName(self, pou):; #Compute a pou name, return "P::%s" % pou
+def ComputePouTransitionName(self, pou, transition):;#Compute a pou transition name,  return "T::%s::%s" % (pou, transition)
+def ComputePouActionName(self, pou, action):;#Compute a pou action name,return "A::%s::%s" % (pou, action)
+def ComputeConfigurationName(self, config):;#Compute a pou  name,return "C::%s" % config
+def ComputeConfigurationResourceName(self, config, resource):;#Compute a pou  name,return "R::%s::%s" % (config, resource)
+def GetElementType(self, tagname):;return {}
+def GetDataTypeInfos(self, tagname, debug=False):;#Return the data type informations, return infos, return None
+def SetDataTypeInfos(self, tagname, infos):;#Change the data type informations
+def GetEditedElement(self, tagname, debug=False):;Project opened Pous management functions, #Return edited element, return project.getdataType(words[1]), return project.getpou(words[1]), return pou.gettransition(words[2]), return pou.getaction(words[2]), return project.getconfiguration(words[1]), return project.getconfigurationResource(words[1], words[2]), return None
+def GetEditedElementName(self, tagname):;#Return edited element name
+def GetEditedElementType(self, tagname, debug=False):;#Return edited element name and type
+def GetEditedElementBodyType(self, tagname, debug=False):;#Return language in which edited element is written
+def GetEditedElementInterfaceVars(self, tagname, tree=False, debug=False):;#Return the edited element variables, return self.GetPouInterfaceVars(pou, tree, debug), return []
+def GetEditedElementInterfaceReturnType(self, tagname, tree=False, debug=False):;#Return the edited element return type, return ["BOOL", ([], [])], return None
+def SetEditedElementText(self, tagname, text):;#Change the edited element text
+def GetEditedElementText(self, tagname, debug=False):;#Return the edited element text
+def GetEditedElementTransitions(self, tagname, debug=False):;#Return the edited element transitions, return transitions,return []
+def GetEditedElementActions(self, tagname, debug=False):;#Return edited element transitions, return actions, return []
+def GetEditedElementVariables(self, tagname, debug=False):;#Return the names of the pou elements
+def GetEditedElementCopy(self, tagname, debug=False):
+def GetEditedElementInstancesCopy(self, tagname, blocks_id=None, wires=None, debug=False):;return text
+def GenerateNewName(self, tagname, name, format, start_idx=0, exclude={}, debug=False):;return name
+def PasteEditedElementInstances(self, tagname, text, new_pos, middle=False, debug=False):;return new_id, connections
+def GetEditedElementInstancesInfos(self, tagname, debug=False):;return element_instances
+def ClearEditedElementExecutionOrder(self, tagname):
+def ResetEditedElementExecutionOrder(self, tagname):
+def SetConnectionWires(self, connection, connector):
+def GetVarTypeObject(self, var_type):;return var_type_obj
+def AddEditedElementPouVar(self, tagname, var_type, name, **args):
+def AddEditedElementPouExternalVar(self, tagname, var_type, name):
+def ChangeEditedElementPouVar(self, tagname, old_type, old_name, new_type, new_name):
+def RemoveEditedElementPouVar(self, tagname, type, name):
+def AddEditedElementBlock(self, tagname, id, blocktype, blockname=None):
+def SetEditedElementBlockInfos(self, tagname, id, infos):
+def AddEditedElementVariable(self, tagname, id, var_type):
+def SetEditedElementVariableInfos(self, tagname, id, infos):
+def AddEditedElementConnection(self, tagname, id, connection_type):
+def SetEditedElementConnectionInfos(self, tagname, id, infos):
+def AddEditedElementComment(self, tagname, id):
+def SetEditedElementCommentInfos(self, tagname, id, infos):
+def AddEditedElementPowerRail(self, tagname, id, powerrail_type):
+def SetEditedElementPowerRailInfos(self, tagname, id, infos):
+def AddEditedElementContact(self, tagname, id):
+def SetEditedElementContactInfos(self, tagname, id, infos):
+def AddEditedElementCoil(self, tagname, id):
+def SetEditedElementCoilInfos(self, tagname, id, infos):
+def AddEditedElementStep(self, tagname, id):
+def SetEditedElementStepInfos(self, tagname, id, infos):
+def AddEditedElementTransition(self, tagname, id):
+def SetEditedElementTransitionInfos(self, tagname, id, infos):
+def AddEditedElementDivergence(self, tagname, id, divergence_type):
+def GetDivergenceType(self, divergence):
+def SetEditedElementDivergenceInfos(self, tagname, id, infos):
+def AddEditedElementJump(self, tagname, id):
+def SetEditedElementJumpInfos(self, tagname, id, infos):
+def AddEditedElementActionBlock(self, tagname, id):
+def SetEditedElementActionBlockInfos(self, tagname, id, infos):
+def RemoveEditedElementInstance(self, tagname, id):
+def GetEditedResourceVariables(self, tagname, debug=False):
+def SetEditedResourceInfos(self, tagname, tasks, instances):
+def GetEditedResourceInfos(self, tagname, debug=False):;return tasks_data, instances_data
+def OpenXMLFile(self, filepath):
+def SaveXMLFile(self, filepath=None):
+def SearchInProject(self, criteria):;Search in Current Project Functions, return self.Project.Search(criteria)
+def SearchInPou(self, tagname, criteria, debug=False):;return search_results,return []
+def Copy(self, model):;Current Buffering Management Functions, Return a copy of the project,return deepcopy(model)
+def CreateProjectBuffer(self, saved):
+def IsProjectBufferEnabled(self):;return self.ProjectBufferEnabled
+def EnableProjectBuffer(self, enable):
+def BufferProject(self):
+def StartBuffering(self):
+def EndBuffering(self):
+def MarkProjectAsSaved(self):
+def ProjectIsSaved(self):;#Return if project is saved,return self.ProjectBuffer.IsCurrentSaved() and not self.Buffering,return self.ProjectSaved
+def LoadPrevious(self):
+def LoadNext(self):
+def GetBufferState(self):

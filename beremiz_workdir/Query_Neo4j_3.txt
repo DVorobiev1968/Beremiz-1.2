@@ -1,0 +1,4 @@
+MATCH(fb:Function_Block),(p:Program)
+WHERE fb.program=p.id
+CREATE(p)-[r:Includes {name: fb.name+'<->'+p.name}]->(fb)
+RETURN type(r), r.name

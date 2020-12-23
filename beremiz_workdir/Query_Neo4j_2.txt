@@ -1,0 +1,5 @@
+CREATE(FB1: Function_Block {type: 1, name: "set_value_CSV", tagname: "P::set_value_CSV",icon:"set_value_CSV.svg", program:"P1"}),
+(FB2: Function_Block {type: 1, name: "get_value_CSV", tagname: "P::get_value_CSV",icon:"get_value_CSV.svg", program:"P1"}),
+(FB3: Function_Block {type: 1, name: "set_value_CSV", tagname: "P::set_value_CSV",icon:".svg", program:"P1"}),
+(FB4: Function_Block {type: 1, name: "SourceFromFileCSV", tagname: "P::SourceFromFileCSV",icon:"SourceFromFileCSV.svg", program:"P1"}),
+(FB5: Function_Block {type: 1, name: "SourceFromFile", tagname: "P::SourceFromFile",icon:"SourceFromFile.svg", program:"P1"})

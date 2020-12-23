@@ -1,0 +1,134 @@
+class switch(object):
+    def __init__(self, value):
+        self.value = value  # ‡«‡Õ‡¿·?‡≈‡Õ‡»‡≈, ‡ ‡Œ·?‡Œ·?‡Œ‡≈ ‡¡·?‡ƒ‡≈‡Ã ‡»·?‡ ‡¿·?·?
+        self.fall = False  # ‡ƒ‡À·? ‡œ·?·?·?·?·? case ‡¡‡À‡Œ‡ ‡Œ‡¬
+    def __iter__(self):  # ‡ƒ‡À·? ‡»·?‡œ‡Œ‡À·?‡«‡Œ‡¬‡¿‡Õ‡»·? ‡¬ ·?‡»‡ ‡À‡≈ for
+        """ ‡?‡Œ‡«‡¬·?‡¿·?‡¿‡≈·? ‡Œ‡ƒ‡»‡Õ ·?‡¿‡« ‡Ã‡≈·?‡Œ‡ƒ match ‡» ‡«‡¿‡¬‡≈·?·?‡¿‡≈·?·?·? """
+        yield self.match
+        raise StopIteration
+    def match(self, *args):
+        """ ‡Å‡ ‡¿‡«·?‡¬‡¿‡≈·?, ‡Õ·?‡∆‡Õ‡Œ ‡À‡» ‡«‡¿·?‡Œ‡ƒ‡»·?·? ‡¬ ·?‡≈·?·?‡Œ‡¬·?‡… ‡¬‡¿·?‡»‡¿‡Õ·? """
+        if self.fall or not args:
+            return True
+        elif self.value in args:
+            self.fall = True
+            return True
+        return False
+
+
+
+class fb:
+    def __init__(self):
+        key = ['id_fb',
+            'nameFile',
+            'n_pos',
+            'f_size',
+            'source_fb',
+            'reader_fb',
+            'status_fb',
+            'messageErr_fb']
+        value = ['0',
+            '_Temporary.csv',
+            '0',
+            '0',
+            None,
+            None,
+            '0',
+            'Initialize...']
+        self.dict_fb = dict(zip(key, value))
+        self.list_fb = []
+
+    def set_dict_val(self, key, value):
+        b_status = False
+        if self.dict_fb.get(key):
+            self.dict_fb[key] = value
+            b_status = True
+        return b_status
+
+    def add_item_fb(self, item):
+        length = len(self.list_fb)
+        i_status = UPDATE_FAIL
+        if (length == 0):
+            dict_temp = item.copy()
+            self.list_fb.append(dict_temp)
+        else:
+            for i in range(length):
+                dict_temp = self.list_fb[i].copy()
+                if dict_temp['id_fb'] == item['id_fb']:
+                    self.list_fb[i].update(item)
+                    i_status = UPDATE_OK
+            if (i_status == UPDATE_FAIL):
+                dict_temp = item.copy()
+                self.list_fb.append(dict_temp)
+
+    def get_val(self, name_FBID, name_field):
+        result = None
+        length = len(self.list_fb)
+        for i in range(length):
+            if self.list_fb[i]['id_fb'] == name_FBID:
+                for case in switch(name_field):
+                    if case("nameFile"): pass
+                    if case("messageErr_fb"):
+                        result = self.list_fb[i].get(name_field)
+                        break
+                    if case("id_fb"): pass
+                    if case("n_pos"): pass
+                    if case("f_size"):
+                        result = long(self.list_fb[i].get(name_field))
+                        break
+                    if case("status_fb"):
+                        result = int(self.list_fb[i].get(name_field))
+                        break
+                    if case():
+                        result = self.list_fb[i].get(name_field)
+        return result
+
+    def set_val(self, name_FBID, name_field, value):
+        i_status = PLCGlobals.SET_VAL_FAIL
+        length = len(self.list_fb)
+        for i in range(length):
+            if self.list_fb[i]['id_fb'] == name_FBID:
+                for case in switch(name_field):
+                    if case("nameFile"):
+                        self.list_fb[i]["nameFile"]=str(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("messageErr_fb"):
+                        self.list_fb[i]["messageErr_fb"]=str(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("id_fb"):
+                        self.list_fb[i]["id_fb"]=long(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("n_pos"):
+                        self.list_fb[i]["n_pos"]=long(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("f_size"):
+                        self.list_fb[i]["f_size"]=long(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("status_fb"):
+                        self.list_fb[i]["status_fb"]=int(value)
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("source_fb"):
+                        self.list_fb[i]["source_fb"]=value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+                    if case("reader_fb"):
+                        self.list_fb[i]["reader_fb"]=value
+                        i_status = PLCGlobals.SET_VAL_OK
+                        break
+        if i_status==PLCGlobals.SET_VAL_FAIL and "id_fb" in name_field:
+            self.set_dict_val("id_fb", value)
+		self.add_item_fb(self.dict_fb)
+	return i_status
+
+    def print_dict_fb(self):
+	print self.dict_fb
+
+    def print_list_fb(self):
+	print self.list_fb
+

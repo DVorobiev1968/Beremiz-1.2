@@ -1,0 +1,1 @@
+gcc -c "C:\Users\User\Beremiz\beremiz_workdir\FromSource(4)\build\plc_main.c" -o "C:\Users\User\Beremiz\beremiz_workdir\FromSource(4)\build\plc_main.o"  "-IC:\Users\User\Beremiz\matiec\lib\C" -Wno-unused-function

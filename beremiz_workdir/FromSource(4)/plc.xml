@@ -1,0 +1,4659 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xsi:schemaLocation="http://www.plcopen.org/xml/tc6_0201">
+  <fileHeader companyName="" productName="IEC_61131-1" productVersion="1.0" creationDateTime="2008-12-14T16:21:19" contentDescription="Load data from Source:&#10;name_file: file 1 field&#10;name_file_CSV: file many field" productRelease="1.0"/>
+  <contentHeader name="IEC_61131-1" modificationDateTime="2020-12-04T09:33:31" version="0.2">
+    <coordinateInfo>
+      <pageSize x="1024" y="1024"/>
+      <fbd>
+        <scaling x="5" y="5"/>
+      </fbd>
+      <ld>
+        <scaling x="5" y="5"/>
+      </ld>
+      <sfc>
+        <scaling x="5" y="5"/>
+      </sfc>
+    </coordinateInfo>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="StateMachine">
+        <baseType>
+          <enum>
+            <values>
+              <value name="STANDBY"/>
+              <value name="START"/>
+              <value name="STOP"/>
+            </values>
+          </enum>
+        </baseType>
+      </dataType>
+      <dataType name="datatype0">
+        <baseType>
+          <struct>
+            <variable name="_1NJ20T001">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="_1NJ20T001.csv"/>
+              </initialValue>
+            </variable>
+            <variable name="_1CV20T001">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="_1CV20T001.csv"/>
+              </initialValue>
+            </variable>
+            <variable name="Rashod_1">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="Rashod_1.csv"/>
+              </initialValue>
+            </variable>
+            <variable name="Rashod_2">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="Rashod_2.csv"/>
+              </initialValue>
+            </variable>
+            <variable name="PID_1">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="PID_1.csv"/>
+              </initialValue>
+            </variable>
+            <variable name="PID_2">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="PID_2.csv"/>
+              </initialValue>
+            </variable>
+            <variable name="PID_3">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="PID_3.csv"/>
+              </initialValue>
+            </variable>
+            <variable name="IN">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="IN"/>
+              </initialValue>
+            </variable>
+            <variable name="OUT">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="OUT"/>
+              </initialValue>
+            </variable>
+            <variable name="IBM">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="IBM.csv"/>
+              </initialValue>
+            </variable>
+            <variable name="Amper">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="Amper"/>
+              </initialValue>
+            </variable>
+            <variable name="Amper_A">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="Amper_A"/>
+              </initialValue>
+            </variable>
+            <variable name="Amper_B">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="Amper_B"/>
+              </initialValue>
+            </variable>
+            <variable name="Amper_C">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="Amper_C"/>
+              </initialValue>
+            </variable>
+          </struct>
+        </baseType>
+      </dataType>
+    </dataTypes>
+    <pous>
+      <pou name="TestCSV_v_3" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="pyTriger">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="Tags">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="result">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="Initial String"/>
+              </initialValue>
+            </variable>
+            <variable name="i_status_read_CSV">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+            </variable>
+            <variable name="i_status_read_CSV1">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+            </variable>
+            <variable name="i_status_write_CSV">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+            </variable>
+            <variable name="i_status_open_CSV">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_1">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_2">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_3">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_IN">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFileCSV0">
+              <type>
+                <derived name="SourceFromFileCSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV0">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV1">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV0">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV1">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV2">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="INTEGRAL0">
+              <type>
+                <derived name="INTEGRAL"/>
+              </type>
+            </variable>
+            <variable name="run">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="true"/>
+              </initialValue>
+            </variable>
+            <variable name="cycle">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="0:0:1"/>
+              </initialValue>
+            </variable>
+            <variable name="triger">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="false"/>
+              </initialValue>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <block localId="1" typeName="SourceFromFileCSV" instanceName="SourceFromFileCSV0" executionOrderId="0" height="60" width="190">
+              <position x="160" y="45"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="160" y="75"/>
+                      <position x="120" y="75"/>
+                      <position x="120" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status_readSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="i_status_writeSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="50"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="2" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="15" y="60"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'dg.csv'</expression>
+            </inVariable>
+            <block localId="3" typeName="get_value_CSV" instanceName="get_value_CSV0" executionOrderId="0" height="65" width="125">
+              <position x="170" y="130"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="170" y="160"/>
+                      <position x="125" y="160"/>
+                      <position x="125" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="4">
+                      <position x="170" y="185"/>
+                      <position x="117" y="185"/>
+                      <position x="117" y="180"/>
+                      <position x="65" y="180"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="4" executionOrderId="0" height="25" width="75" negated="false">
+              <position x="25" y="170"/>
+              <connectionPointOut>
+                <relPosition x="75" y="10"/>
+              </connectionPointOut>
+              <expression>'consumption'</expression>
+            </inVariable>
+            <inOutVariable localId="5" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="325" y="150"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="3" formalParameter="value_outFB">
+                  <position x="325" y="160"/>
+                  <position x="295" y="160"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_1</expression>
+            </inOutVariable>
+            <block localId="6" typeName="get_value_CSV" instanceName="get_value_CSV1" executionOrderId="0" height="65" width="125">
+              <position x="185" y="215"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="185" y="245"/>
+                      <position x="132" y="245"/>
+                      <position x="132" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="7">
+                      <position x="185" y="270"/>
+                      <position x="127" y="270"/>
+                      <position x="127" y="260"/>
+                      <position x="70" y="260"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="7" executionOrderId="0" height="25" width="40" negated="false">
+              <position x="30" y="250"/>
+              <connectionPointOut>
+                <relPosition x="40" y="10"/>
+              </connectionPointOut>
+              <expression>'angle'</expression>
+            </inVariable>
+            <inOutVariable localId="8" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="335" y="235"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="6" formalParameter="value_outFB">
+                  <position x="335" y="245"/>
+                  <position x="310" y="245"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_2</expression>
+            </inOutVariable>
+            <block localId="11" typeName="set_value_CSV" instanceName="set_value_CSV0" executionOrderId="0" height="80" width="105">
+              <position x="885" y="40"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="885" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="12">
+                      <position x="885" y="90"/>
+                      <position x="857" y="90"/>
+                      <position x="857" y="85"/>
+                      <position x="830" y="85"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="10">
+                      <position x="885" y="110"/>
+                      <position x="862" y="110"/>
+                      <position x="862" y="180"/>
+                      <position x="840" y="180"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="12" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="765" y="75"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_3'</expression>
+            </inVariable>
+            <inOutVariable localId="10" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="780" y="170"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="17" formalParameter="XOUT">
+                  <position x="780" y="180"/>
+                  <position x="632" y="180"/>
+                  <position x="632" y="385"/>
+                  <position x="525" y="385"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_3</expression>
+            </inOutVariable>
+            <block localId="13" typeName="set_value_CSV" instanceName="set_value_CSV1" executionOrderId="0" height="85" width="105">
+              <position x="905" y="145"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="905" y="175"/>
+                      <position x="610" y="175"/>
+                      <position x="610" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="14">
+                      <position x="905" y="195"/>
+                      <position x="877" y="195"/>
+                      <position x="877" y="235"/>
+                      <position x="850" y="235"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="5">
+                      <position x="905" y="215"/>
+                      <position x="605" y="215"/>
+                      <position x="605" y="160"/>
+                      <position x="385" y="160"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="14" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="785" y="225"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_1'</expression>
+            </inVariable>
+            <block localId="15" typeName="set_value_CSV" instanceName="set_value_CSV2" executionOrderId="0" height="85" width="105">
+              <position x="910" y="250"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="910" y="280"/>
+                      <position x="590" y="280"/>
+                      <position x="590" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="16">
+                      <position x="910" y="300"/>
+                      <position x="860" y="300"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="8">
+                      <position x="910" y="320"/>
+                      <position x="517" y="320"/>
+                      <position x="517" y="245"/>
+                      <position x="395" y="245"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="16" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="795" y="290"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_2'</expression>
+            </inVariable>
+            <block localId="17" typeName="INTEGRAL" instanceName="INTEGRAL0" executionOrderId="0" height="125" width="75">
+              <position x="450" y="335"/>
+              <inputVariables>
+                <variable formalParameter="RUN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="20">
+                      <position x="450" y="365"/>
+                      <position x="355" y="365"/>
+                      <position x="355" y="300"/>
+                      <position x="255" y="300"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="R1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="22" formalParameter="OUT">
+                      <position x="450" y="385"/>
+                      <position x="357" y="385"/>
+                      <position x="357" y="380"/>
+                      <position x="265" y="380"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="XIN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="5">
+                      <position x="450" y="405"/>
+                      <position x="417" y="405"/>
+                      <position x="417" y="160"/>
+                      <position x="385" y="160"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="X0">
+                  <connectionPointIn>
+                    <relPosition x="0" y="95"/>
+                    <connection refLocalId="8">
+                      <position x="450" y="430"/>
+                      <position x="422" y="430"/>
+                      <position x="422" y="245"/>
+                      <position x="395" y="245"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="CYCLE">
+                  <connectionPointIn>
+                    <relPosition x="0" y="115"/>
+                    <connection refLocalId="23" formalParameter="OUT">
+                      <position x="450" y="450"/>
+                      <position x="370" y="450"/>
+                      <position x="370" y="435"/>
+                      <position x="290" y="435"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="Q">
+                  <connectionPointOut>
+                    <relPosition x="75" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="XOUT">
+                  <connectionPointOut>
+                    <relPosition x="75" y="50"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="19" executionOrderId="0" height="25" width="35" negated="false">
+              <position x="35" y="420"/>
+              <connectionPointOut>
+                <relPosition x="35" y="10"/>
+              </connectionPointOut>
+              <expression>cycle</expression>
+            </inVariable>
+            <inVariable localId="20" executionOrderId="0" height="25" width="30" negated="false">
+              <position x="225" y="290"/>
+              <connectionPointOut>
+                <relPosition x="30" y="10"/>
+              </connectionPointOut>
+              <expression>run</expression>
+            </inVariable>
+            <block localId="22" typeName="NOT" executionOrderId="0" height="45" width="50">
+              <position x="215" y="350"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="21">
+                      <position x="215" y="380"/>
+                      <position x="182" y="380"/>
+                      <position x="182" y="375"/>
+                      <position x="150" y="375"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="50" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inOutVariable localId="21" executionOrderId="0" height="25" width="40" negatedOut="false" negatedIn="false">
+              <position x="110" y="365"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="22" formalParameter="OUT">
+                  <position x="110" y="375"/>
+                  <position x="100" y="375"/>
+                  <position x="100" y="325"/>
+                  <position x="275" y="325"/>
+                  <position x="275" y="380"/>
+                  <position x="265" y="380"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="40" y="10"/>
+              </connectionPointOut>
+              <expression>triger</expression>
+            </inOutVariable>
+            <block localId="23" typeName="STRING_TO_TIME" executionOrderId="0" height="45" width="100">
+              <position x="190" y="405"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="190" y="435"/>
+                      <position x="125" y="435"/>
+                      <position x="125" y="430"/>
+                      <position x="70" y="430"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="100" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+          </FBD>
+        </body>
+        <documentation>
+          <xhtml:p><![CDATA[Testing fron CSV-files]]></xhtml:p>
+        </documentation>
+      </pou>
+      <pou name="TestCSV_v_2" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="pyTriger">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="Tags">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="result">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="Initial String"/>
+              </initialValue>
+            </variable>
+            <variable name="i_status_read_CSV">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+            </variable>
+            <variable name="i_status_read_CSV1">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+            </variable>
+            <variable name="i_status_write_CSV">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+            </variable>
+            <variable name="i_status_open_CSV">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_1">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_2">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_3">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_4">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_5">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_6">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_7">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_8">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_9">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_10">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="0.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_out_11">
+              <type>
+                <REAL/>
+              </type>
+              <initialValue>
+                <simpleValue value="10.0"/>
+              </initialValue>
+            </variable>
+            <variable name="val_IN">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFileCSV0">
+              <type>
+                <derived name="SourceFromFileCSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV0">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV1">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV0">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV1">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV2">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <block localId="1" typeName="SourceFromFileCSV" instanceName="SourceFromFileCSV0" executionOrderId="0" height="60" width="190">
+              <position x="160" y="45"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="160" y="75"/>
+                      <position x="120" y="75"/>
+                      <position x="120" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status_readSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="i_status_writeSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="50"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="2" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="15" y="60"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'PID_1.csv'</expression>
+            </inVariable>
+            <block localId="3" typeName="get_value_CSV" instanceName="get_value_CSV0" executionOrderId="0" height="65" width="125">
+              <position x="170" y="130"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="170" y="160"/>
+                      <position x="125" y="160"/>
+                      <position x="125" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="4">
+                      <position x="170" y="185"/>
+                      <position x="117" y="185"/>
+                      <position x="117" y="180"/>
+                      <position x="65" y="180"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="4" executionOrderId="0" height="25" width="40" negated="false">
+              <position x="25" y="170"/>
+              <connectionPointOut>
+                <relPosition x="40" y="10"/>
+              </connectionPointOut>
+              <expression>'IN_1'</expression>
+            </inVariable>
+            <inOutVariable localId="5" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="325" y="150"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="3" formalParameter="value_outFB">
+                  <position x="325" y="160"/>
+                  <position x="295" y="160"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_1</expression>
+            </inOutVariable>
+            <block localId="6" typeName="get_value_CSV" instanceName="get_value_CSV1" executionOrderId="0" height="65" width="125">
+              <position x="185" y="215"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="185" y="245"/>
+                      <position x="132" y="245"/>
+                      <position x="132" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="7">
+                      <position x="185" y="270"/>
+                      <position x="127" y="270"/>
+                      <position x="127" y="260"/>
+                      <position x="70" y="260"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="7" executionOrderId="0" height="25" width="40" negated="false">
+              <position x="30" y="250"/>
+              <connectionPointOut>
+                <relPosition x="40" y="10"/>
+              </connectionPointOut>
+              <expression>'IN_2'</expression>
+            </inVariable>
+            <inOutVariable localId="8" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="335" y="235"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="6" formalParameter="value_outFB">
+                  <position x="335" y="245"/>
+                  <position x="310" y="245"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_2</expression>
+            </inOutVariable>
+            <block localId="9" typeName="ADD" executionOrderId="0" height="65" width="55">
+              <position x="435" y="150"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="5">
+                      <position x="435" y="180"/>
+                      <position x="410" y="180"/>
+                      <position x="410" y="160"/>
+                      <position x="385" y="160"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="8">
+                      <position x="435" y="205"/>
+                      <position x="415" y="205"/>
+                      <position x="415" y="245"/>
+                      <position x="395" y="245"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="55" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="11" typeName="set_value_CSV" instanceName="set_value_CSV0" executionOrderId="0" height="80" width="105">
+              <position x="885" y="40"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="885" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="12">
+                      <position x="885" y="90"/>
+                      <position x="857" y="90"/>
+                      <position x="857" y="85"/>
+                      <position x="830" y="85"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="10">
+                      <position x="885" y="110"/>
+                      <position x="862" y="110"/>
+                      <position x="862" y="180"/>
+                      <position x="840" y="180"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="12" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="765" y="75"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_3'</expression>
+            </inVariable>
+            <inOutVariable localId="10" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="780" y="170"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="9" formalParameter="OUT">
+                  <position x="780" y="180"/>
+                  <position x="490" y="180"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_3</expression>
+            </inOutVariable>
+            <block localId="13" typeName="set_value_CSV" instanceName="set_value_CSV1" executionOrderId="0" height="85" width="105">
+              <position x="905" y="145"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="905" y="175"/>
+                      <position x="610" y="175"/>
+                      <position x="610" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="14">
+                      <position x="905" y="195"/>
+                      <position x="877" y="195"/>
+                      <position x="877" y="235"/>
+                      <position x="850" y="235"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="5">
+                      <position x="905" y="215"/>
+                      <position x="605" y="215"/>
+                      <position x="605" y="160"/>
+                      <position x="385" y="160"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="14" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="785" y="225"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_1'</expression>
+            </inVariable>
+            <block localId="15" typeName="set_value_CSV" instanceName="set_value_CSV2" executionOrderId="0" height="85" width="105">
+              <position x="910" y="250"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="910" y="280"/>
+                      <position x="590" y="280"/>
+                      <position x="590" y="70"/>
+                      <position x="80" y="70"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="16">
+                      <position x="910" y="300"/>
+                      <position x="860" y="300"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="8">
+                      <position x="910" y="320"/>
+                      <position x="517" y="320"/>
+                      <position x="517" y="245"/>
+                      <position x="395" y="245"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="16" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="795" y="290"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_2'</expression>
+            </inVariable>
+          </FBD>
+        </body>
+        <documentation>
+          <xhtml:p><![CDATA[Testing fron CSV-files]]></xhtml:p>
+        </documentation>
+      </pou>
+      <pou name="TestCSV_v_1" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="pyTriger">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="Tags">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="result">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="i_status_read_CSV">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="i_status_read_CSV1">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="i_status_write_CSV">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="i_status_open_CSV">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="val_out_1">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_2">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_3">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_4">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_5">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_6">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_7">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_8">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_9">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_10">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_IN">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV0">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV1">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFileCSV0">
+              <type>
+                <derived name="SourceFromFileCSV"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFileCSV1">
+              <type>
+                <derived name="SourceFromFileCSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV2">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV3">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV0">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV1">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV2">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV3">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV4">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV5">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <inVariable localId="2" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="25" y="55"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>Tags.PID_1</expression>
+            </inVariable>
+            <inVariable localId="13" executionOrderId="0" height="25" width="60" negated="false">
+              <position x="25" y="180"/>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_IN.IN</expression>
+            </inVariable>
+            <block localId="14" typeName="get_value_CSV" instanceName="get_value_CSV0" executionOrderId="0" height="65" width="125">
+              <position x="165" y="135"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="165" y="165"/>
+                      <position x="130" y="165"/>
+                      <position x="130" y="65"/>
+                      <position x="95" y="65"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="13">
+                      <position x="165" y="190"/>
+                      <position x="85" y="190"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="15" typeName="get_value_CSV" instanceName="get_value_CSV1" executionOrderId="0" height="65" width="125">
+              <position x="170" y="220"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="170" y="250"/>
+                      <position x="115" y="250"/>
+                      <position x="115" y="65"/>
+                      <position x="95" y="65"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="16">
+                      <position x="170" y="275"/>
+                      <position x="95" y="275"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="16" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="25" y="265"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>val_IN.OUT</expression>
+            </inVariable>
+            <block localId="17" typeName="SourceFromFileCSV" instanceName="SourceFromFileCSV0" executionOrderId="0" height="45" width="190">
+              <position x="165" y="35"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="165" y="65"/>
+                      <position x="95" y="65"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status_readSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="i_status_writeSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="50"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="18" typeName="SourceFromFileCSV" instanceName="SourceFromFileCSV1" executionOrderId="0" height="40" width="190">
+              <position x="170" y="305"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="170" y="335"/>
+                      <position x="90" y="335"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status_readSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="i_status_writeSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="50"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="19" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="20" y="325"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>Tags.PID_2</expression>
+            </inVariable>
+            <block localId="20" typeName="get_value_CSV" instanceName="get_value_CSV2" executionOrderId="0" height="65" width="125">
+              <position x="175" y="370"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="175" y="400"/>
+                      <position x="132" y="400"/>
+                      <position x="132" y="335"/>
+                      <position x="90" y="335"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="23">
+                      <position x="175" y="425"/>
+                      <position x="80" y="425"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="23" executionOrderId="0" height="25" width="60" negated="false">
+              <position x="20" y="415"/>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>'IN_1'</expression>
+            </inVariable>
+            <inVariable localId="24" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="15" y="455"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>'IN_2'</expression>
+            </inVariable>
+            <block localId="27" typeName="get_value_CSV" instanceName="get_value_CSV3" executionOrderId="0" height="65" width="125">
+              <position x="180" y="445"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="180" y="475"/>
+                      <position x="135" y="475"/>
+                      <position x="135" y="335"/>
+                      <position x="90" y="335"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="24">
+                      <position x="180" y="500"/>
+                      <position x="132" y="500"/>
+                      <position x="132" y="465"/>
+                      <position x="85" y="465"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="29" typeName="ADD" executionOrderId="0" height="65" width="55">
+              <position x="515" y="395"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="25">
+                      <position x="515" y="425"/>
+                      <position x="475" y="425"/>
+                      <position x="475" y="400"/>
+                      <position x="435" y="400"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="28">
+                      <position x="515" y="450"/>
+                      <position x="470" y="450"/>
+                      <position x="470" y="475"/>
+                      <position x="425" y="475"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="55" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inOutVariable localId="25" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="375" y="390"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="20" formalParameter="value_outFB">
+                  <position x="375" y="400"/>
+                  <position x="300" y="400"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_3</expression>
+            </inOutVariable>
+            <inOutVariable localId="28" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="365" y="465"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="27" formalParameter="value_outFB">
+                  <position x="365" y="475"/>
+                  <position x="305" y="475"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_4</expression>
+            </inOutVariable>
+            <block localId="31" typeName="MUL" executionOrderId="0" height="65" width="55">
+              <position x="470" y="170"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="8">
+                      <position x="470" y="200"/>
+                      <position x="442" y="200"/>
+                      <position x="442" y="165"/>
+                      <position x="415" y="165"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="11">
+                      <position x="470" y="225"/>
+                      <position x="442" y="225"/>
+                      <position x="442" y="250"/>
+                      <position x="415" y="250"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="55" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inOutVariable localId="8" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="355" y="155"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="14" formalParameter="value_outFB">
+                  <position x="355" y="165"/>
+                  <position x="290" y="165"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_1</expression>
+            </inOutVariable>
+            <inOutVariable localId="11" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="355" y="240"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="15" formalParameter="value_outFB">
+                  <position x="355" y="250"/>
+                  <position x="295" y="250"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_2</expression>
+            </inOutVariable>
+            <inOutVariable localId="32" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="550" y="190"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="31" formalParameter="OUT">
+                  <position x="550" y="200"/>
+                  <position x="525" y="200"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_6</expression>
+            </inOutVariable>
+            <inVariable localId="34" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="585" y="5"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>Tags.PID_1</expression>
+            </inVariable>
+            <inVariable localId="39" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="585" y="45"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_1'</expression>
+            </inVariable>
+            <block localId="40" typeName="set_value_CSV" instanceName="set_value_CSV0" executionOrderId="0" height="85" width="105">
+              <position x="720" y="15"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="34">
+                      <position x="720" y="45"/>
+                      <position x="687" y="45"/>
+                      <position x="687" y="15"/>
+                      <position x="655" y="15"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="39">
+                      <position x="720" y="65"/>
+                      <position x="685" y="65"/>
+                      <position x="685" y="55"/>
+                      <position x="650" y="55"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="8">
+                      <position x="720" y="85"/>
+                      <position x="440" y="85"/>
+                      <position x="440" y="165"/>
+                      <position x="415" y="165"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="42" typeName="set_value_CSV" instanceName="set_value_CSV1" executionOrderId="0" height="85" width="105">
+              <position x="725" y="115"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="34">
+                      <position x="725" y="145"/>
+                      <position x="690" y="145"/>
+                      <position x="690" y="15"/>
+                      <position x="655" y="15"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="43">
+                      <position x="725" y="165"/>
+                      <position x="690" y="165"/>
+                      <position x="690" y="105"/>
+                      <position x="655" y="105"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="11">
+                      <position x="725" y="185"/>
+                      <position x="435" y="185"/>
+                      <position x="435" y="250"/>
+                      <position x="415" y="250"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="43" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="590" y="95"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_2'</expression>
+            </inVariable>
+            <block localId="44" typeName="set_value_CSV" instanceName="set_value_CSV2" executionOrderId="0" height="80" width="105">
+              <position x="730" y="215"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="34">
+                      <position x="730" y="245"/>
+                      <position x="692" y="245"/>
+                      <position x="692" y="15"/>
+                      <position x="655" y="15"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="45">
+                      <position x="730" y="265"/>
+                      <position x="692" y="265"/>
+                      <position x="692" y="245"/>
+                      <position x="655" y="245"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="32">
+                      <position x="730" y="285"/>
+                      <position x="630" y="285"/>
+                      <position x="630" y="200"/>
+                      <position x="610" y="200"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="45" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="590" y="235"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_6'</expression>
+            </inVariable>
+            <block localId="46" typeName="set_value_CSV" instanceName="set_value_CSV3" executionOrderId="0" height="85" width="105">
+              <position x="735" y="315"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="34">
+                      <position x="735" y="345"/>
+                      <position x="695" y="345"/>
+                      <position x="695" y="15"/>
+                      <position x="655" y="15"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="47">
+                      <position x="735" y="365"/>
+                      <position x="697" y="365"/>
+                      <position x="697" y="380"/>
+                      <position x="660" y="380"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="30">
+                      <position x="735" y="385"/>
+                      <position x="692" y="385"/>
+                      <position x="692" y="425"/>
+                      <position x="650" y="425"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inOutVariable localId="30" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="590" y="415"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="29" formalParameter="OUT">
+                  <position x="590" y="425"/>
+                  <position x="570" y="425"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_5</expression>
+            </inOutVariable>
+            <inVariable localId="47" executionOrderId="0" height="25" width="60" negated="false">
+              <position x="600" y="370"/>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>'VAL_5'</expression>
+            </inVariable>
+            <block localId="48" typeName="set_value_CSV" instanceName="set_value_CSV4" executionOrderId="2" height="85" width="105">
+              <position x="735" y="415"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="735" y="445"/>
+                      <position x="675" y="445"/>
+                      <position x="675" y="335"/>
+                      <position x="90" y="335"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="49">
+                      <position x="735" y="465"/>
+                      <position x="655" y="465"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="25">
+                      <position x="735" y="485"/>
+                      <position x="585" y="485"/>
+                      <position x="585" y="400"/>
+                      <position x="435" y="400"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="49" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="590" y="455"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_3'</expression>
+            </inVariable>
+            <block localId="50" typeName="set_value_CSV" instanceName="set_value_CSV5" executionOrderId="0" height="85" width="105">
+              <position x="740" y="525"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="740" y="555"/>
+                      <position x="685" y="555"/>
+                      <position x="685" y="335"/>
+                      <position x="90" y="335"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="51">
+                      <position x="740" y="575"/>
+                      <position x="695" y="575"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="28">
+                      <position x="740" y="595"/>
+                      <position x="705" y="595"/>
+                      <position x="705" y="475"/>
+                      <position x="425" y="475"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="51" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="630" y="565"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_4'</expression>
+            </inVariable>
+          </FBD>
+        </body>
+        <documentation>
+          <xhtml:p><![CDATA[Testing fron CSV-files]]></xhtml:p>
+        </documentation>
+      </pou>
+      <pou name="set_value_CSV" pouType="functionBlock">
+        <interface>
+          <localVars>
+            <variable name="pyTrigger">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="nameFile">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="nameField">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="IN"/>
+              </initialValue>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="i_status">
+              <type>
+                <INT/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Value out]]></xhtml:p>
+              </documentation>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="python_eval0">
+              <type>
+                <derived name="python_eval"/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="value_IN">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <FBD>
+            <inOutVariable localId="1" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="35" y="45"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="2" formalParameter="OUT">
+                  <position x="35" y="55"/>
+                  <position x="25" y="55"/>
+                  <position x="25" y="5"/>
+                  <position x="240" y="5"/>
+                  <position x="240" y="55"/>
+                  <position x="230" y="55"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>pyTrigger</expression>
+            </inOutVariable>
+            <block localId="2" typeName="NOT" executionOrderId="0" height="45" width="50">
+              <position x="180" y="25"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="1">
+                      <position x="180" y="55"/>
+                      <position x="95" y="55"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="50" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="3" typeName="python_eval" instanceName="python_eval0" executionOrderId="0" height="65" width="85">
+              <position x="285" y="80"/>
+              <inputVariables>
+                <variable formalParameter="TRIG">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2" formalParameter="OUT">
+                      <position x="285" y="110"/>
+                      <position x="257" y="110"/>
+                      <position x="257" y="55"/>
+                      <position x="230" y="55"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="CODE">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="17" formalParameter="OUT">
+                      <position x="285" y="135"/>
+                      <position x="262" y="135"/>
+                      <position x="262" y="120"/>
+                      <position x="240" y="120"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="ACK">
+                  <connectionPointOut>
+                    <relPosition x="85" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="RESULT">
+                  <connectionPointOut>
+                    <relPosition x="85" y="55"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="6" executionOrderId="0" height="25" width="60" negated="false">
+              <position x="555" y="125"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="19" formalParameter="OUT">
+                  <position x="555" y="135"/>
+                  <position x="505" y="135"/>
+                </connection>
+              </connectionPointIn>
+              <expression>i_status</expression>
+            </outVariable>
+            <inVariable localId="14" executionOrderId="0" height="25" width="85" negated="false">
+              <position x="25" y="150"/>
+              <connectionPointOut>
+                <relPosition x="85" y="10"/>
+              </connectionPointOut>
+              <expression>nameField</expression>
+            </inVariable>
+            <inVariable localId="16" executionOrderId="0" height="25" width="85" negated="false">
+              <position x="25" y="110"/>
+              <connectionPointOut>
+                <relPosition x="85" y="10"/>
+              </connectionPointOut>
+              <expression>nameFile</expression>
+            </inVariable>
+            <block localId="17" typeName="set_val_row" executionOrderId="0" height="85" width="85">
+              <position x="155" y="90"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="16">
+                      <position x="155" y="120"/>
+                      <position x="110" y="120"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="14">
+                      <position x="155" y="140"/>
+                      <position x="132" y="140"/>
+                      <position x="132" y="160"/>
+                      <position x="110" y="160"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="18">
+                      <position x="155" y="160"/>
+                      <position x="140" y="160"/>
+                      <position x="140" y="195"/>
+                      <position x="80" y="195"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="85" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="18" executionOrderId="0" height="25" width="55" negated="false">
+              <position x="25" y="185"/>
+              <connectionPointOut>
+                <relPosition x="55" y="10"/>
+              </connectionPointOut>
+              <expression>value_IN</expression>
+            </inVariable>
+            <block localId="19" typeName="STRING_TO_INT" executionOrderId="0" height="45" width="95">
+              <position x="410" y="105"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="3" formalParameter="RESULT">
+                      <position x="410" y="135"/>
+                      <position x="370" y="135"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="95" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+          </FBD>
+        </body>
+      </pou>
+      <pou name="set_val_row" pouType="function">
+        <interface>
+          <returnType>
+            <string/>
+          </returnType>
+          <inputVars>
+            <variable name="nameFile">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="nameField">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="value">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="str_temp">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml:p><![CDATA[set_val_row:=CONCAT('set_val_row("',CONCAT(nameFile,'","',nameField),'","',REAL_TO_STRING(value),'")');
+]]></xhtml:p>
+          </ST>
+        </body>
+      </pou>
+      <pou name="writeSignalCSV" pouType="function">
+        <interface>
+          <returnType>
+            <string/>
+          </returnType>
+          <inputVars>
+            <variable name="nameFile">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml:p><![CDATA[writeSignalCSV:=CONCAT('writeCSV("',nameFile,'")');]]></xhtml:p>
+          </ST>
+        </body>
+      </pou>
+      <pou name="get_val_row" pouType="function">
+        <interface>
+          <returnType>
+            <string/>
+          </returnType>
+          <inputVars>
+            <variable name="nameFile">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="nameField">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml:p><![CDATA[get_val_row:=CONCAT('get_val_row("',nameFile,'","',nameField,'")');]]></xhtml:p>
+          </ST>
+        </body>
+      </pou>
+      <pou name="get_value_CSV" pouType="functionBlock">
+        <interface>
+          <localVars>
+            <variable name="pyTrigger">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="nameFile">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="nameField">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="IN"/>
+              </initialValue>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="value_outFB">
+              <type>
+                <REAL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Value out]]></xhtml:p>
+              </documentation>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="python_eval0">
+              <type>
+                <derived name="python_eval"/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <inOutVariable localId="1" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="35" y="45"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="2" formalParameter="OUT">
+                  <position x="35" y="55"/>
+                  <position x="25" y="55"/>
+                  <position x="25" y="5"/>
+                  <position x="240" y="5"/>
+                  <position x="240" y="55"/>
+                  <position x="230" y="55"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>pyTrigger</expression>
+            </inOutVariable>
+            <block localId="2" typeName="NOT" executionOrderId="0" height="45" width="50">
+              <position x="180" y="25"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="1">
+                      <position x="180" y="55"/>
+                      <position x="95" y="55"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="50" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="3" typeName="python_eval" instanceName="python_eval0" executionOrderId="0" height="65" width="85">
+              <position x="285" y="80"/>
+              <inputVariables>
+                <variable formalParameter="TRIG">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2" formalParameter="OUT">
+                      <position x="285" y="110"/>
+                      <position x="257" y="110"/>
+                      <position x="257" y="55"/>
+                      <position x="230" y="55"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="CODE">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="15" formalParameter="OUT">
+                      <position x="285" y="135"/>
+                      <position x="240" y="135"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="ACK">
+                  <connectionPointOut>
+                    <relPosition x="85" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="RESULT">
+                  <connectionPointOut>
+                    <relPosition x="85" y="55"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="5" typeName="STRING_TO_REAL" executionOrderId="0" height="45" width="100">
+              <position x="415" y="105"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="3" formalParameter="RESULT">
+                      <position x="415" y="135"/>
+                      <position x="370" y="135"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="100" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="6" executionOrderId="0" height="25" width="60" negated="false">
+              <position x="600" y="125"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="5" formalParameter="OUT">
+                  <position x="600" y="135"/>
+                  <position x="515" y="135"/>
+                </connection>
+              </connectionPointIn>
+              <expression>value_outFB</expression>
+            </outVariable>
+            <inVariable localId="14" executionOrderId="0" height="25" width="85" negated="false">
+              <position x="25" y="150"/>
+              <connectionPointOut>
+                <relPosition x="85" y="10"/>
+              </connectionPointOut>
+              <expression>nameField</expression>
+            </inVariable>
+            <block localId="15" typeName="get_val_row" executionOrderId="0" height="65" width="85">
+              <position x="155" y="105"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="16">
+                      <position x="155" y="135"/>
+                      <position x="132" y="135"/>
+                      <position x="132" y="120"/>
+                      <position x="110" y="120"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="14">
+                      <position x="155" y="160"/>
+                      <position x="110" y="160"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="85" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="16" executionOrderId="0" height="25" width="85" negated="false">
+              <position x="25" y="110"/>
+              <connectionPointOut>
+                <relPosition x="85" y="10"/>
+              </connectionPointOut>
+              <expression>nameFile</expression>
+            </inVariable>
+          </FBD>
+        </body>
+      </pou>
+      <pou name="openCSV" pouType="function">
+        <interface>
+          <returnType>
+            <string/>
+          </returnType>
+          <inputVars>
+            <variable name="arg">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml:p><![CDATA[openCSV:=CONCAT('openCSV("',arg,'")');
+]]></xhtml:p>
+          </ST>
+        </body>
+      </pou>
+      <pou name="readSignalCSV" pouType="function">
+        <interface>
+          <returnType>
+            <string/>
+          </returnType>
+          <inputVars>
+            <variable name="nameFile">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="i_status">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml:p><![CDATA[readSignalCSV:=CONCAT('readSignalCSV("',i_status,'","',nameFile,'")');]]></xhtml:p>
+          </ST>
+        </body>
+      </pou>
+      <pou name="SourceFromFileCSV" pouType="functionBlock">
+        <interface>
+          <localVars>
+            <variable name="pyTrigger">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="TRUE"/>
+              </initialValue>
+            </variable>
+            <variable name="pyTriggerOpenCSV">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="TRUE"/>
+              </initialValue>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="nameFileFB">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="unknow.csv"/>
+              </initialValue>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="i_status_readSignal_CSV">
+              <type>
+                <INT/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Value out]]></xhtml:p>
+              </documentation>
+            </variable>
+            <variable name="i_status_writeSignal_CSV">
+              <type>
+                <INT/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Status write CSV]]></xhtml:p>
+              </documentation>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="python_eval0">
+              <type>
+                <derived name="python_eval"/>
+              </type>
+            </variable>
+            <variable name="str_func">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="python_eval1">
+              <type>
+                <derived name="python_eval"/>
+              </type>
+            </variable>
+            <variable name="python_eval2">
+              <type>
+                <derived name="python_eval"/>
+              </type>
+            </variable>
+            <variable name="con_writeCSV">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <inOutVariable localId="1" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="285" y="65"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="2" formalParameter="OUT">
+                  <position x="285" y="75"/>
+                  <position x="260" y="75"/>
+                  <position x="260" y="25"/>
+                  <position x="475" y="25"/>
+                  <position x="475" y="75"/>
+                  <position x="465" y="75"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>pyTrigger</expression>
+            </inOutVariable>
+            <block localId="2" typeName="NOT" executionOrderId="0" height="45" width="50">
+              <position x="415" y="45"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="1">
+                      <position x="415" y="75"/>
+                      <position x="345" y="75"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="50" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="3" typeName="python_eval" instanceName="python_eval0" executionOrderId="0" height="65" width="85">
+              <position x="535" y="100"/>
+              <inputVariables>
+                <variable formalParameter="TRIG">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2" formalParameter="OUT">
+                      <position x="535" y="130"/>
+                      <position x="492" y="130"/>
+                      <position x="492" y="75"/>
+                      <position x="465" y="75"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="CODE">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="24" formalParameter="OUT">
+                      <position x="535" y="155"/>
+                      <position x="440" y="155"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="ACK">
+                  <connectionPointOut>
+                    <relPosition x="85" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="RESULT">
+                  <connectionPointOut>
+                    <relPosition x="85" y="55"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="14" executionOrderId="0" height="25" width="85" negated="false">
+              <position x="10" y="15"/>
+              <connectionPointOut>
+                <relPosition x="85" y="10"/>
+              </connectionPointOut>
+              <expression>nameFileFB</expression>
+            </inVariable>
+            <block localId="17" typeName="python_eval" instanceName="python_eval1" executionOrderId="0" height="65" width="85">
+              <position x="205" y="205"/>
+              <inputVariables>
+                <variable formalParameter="TRIG">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="23">
+                      <position x="205" y="235"/>
+                      <position x="195" y="235"/>
+                      <position x="195" y="190"/>
+                      <position x="245" y="190"/>
+                      <position x="245" y="145"/>
+                      <position x="235" y="145"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="CODE">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="18" formalParameter="OUT">
+                      <position x="205" y="260"/>
+                      <position x="180" y="260"/>
+                      <position x="180" y="315"/>
+                      <position x="155" y="315"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="ACK">
+                  <connectionPointOut>
+                    <relPosition x="85" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="RESULT">
+                  <connectionPointOut>
+                    <relPosition x="85" y="55"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="18" typeName="openCSV" executionOrderId="0" height="65" width="60">
+              <position x="95" y="275"/>
+              <inputVariables>
+                <variable formalParameter="arg">
+                  <connectionPointIn>
+                    <relPosition x="0" y="40"/>
+                    <connection refLocalId="14">
+                      <position x="95" y="315"/>
+                      <position x="85" y="315"/>
+                      <position x="85" y="172"/>
+                      <position x="110" y="172"/>
+                      <position x="110" y="25"/>
+                      <position x="95" y="25"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="60" y="40"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="21" typeName="STRING_TO_INT" executionOrderId="0" height="45" width="95">
+              <position x="660" y="125"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="3" formalParameter="RESULT">
+                      <position x="660" y="155"/>
+                      <position x="620" y="155"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="95" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="22" executionOrderId="0" height="25" width="130" negated="false">
+              <position x="825" y="145"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="21" formalParameter="OUT">
+                  <position x="825" y="155"/>
+                  <position x="755" y="155"/>
+                </connection>
+              </connectionPointIn>
+              <expression>i_status_readSignal_CSV</expression>
+            </outVariable>
+            <inVariable localId="23" executionOrderId="0" height="25" width="105" negated="false">
+              <position x="130" y="135"/>
+              <connectionPointOut>
+                <relPosition x="105" y="10"/>
+              </connectionPointOut>
+              <expression>pyTriggerOpenCSV</expression>
+            </inVariable>
+            <block localId="24" typeName="readSignalCSV" executionOrderId="0" height="65" width="80">
+              <position x="360" y="125"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="14">
+                      <position x="360" y="155"/>
+                      <position x="255" y="155"/>
+                      <position x="255" y="25"/>
+                      <position x="95" y="25"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="i_status">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="17" formalParameter="RESULT">
+                      <position x="360" y="180"/>
+                      <position x="325" y="180"/>
+                      <position x="325" y="260"/>
+                      <position x="290" y="260"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="80" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="25" typeName="python_eval" instanceName="python_eval2" executionOrderId="0" height="60" width="80">
+              <position x="540" y="210"/>
+              <inputVariables>
+                <variable formalParameter="TRIG">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2" formalParameter="OUT">
+                      <position x="540" y="240"/>
+                      <position x="502" y="240"/>
+                      <position x="502" y="75"/>
+                      <position x="465" y="75"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="CODE">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="26" formalParameter="OUT">
+                      <position x="540" y="260"/>
+                      <position x="490" y="260"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="ACK">
+                  <connectionPointOut>
+                    <relPosition x="80" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="RESULT">
+                  <connectionPointOut>
+                    <relPosition x="80" y="50"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="26" typeName="writeSignalCSV" executionOrderId="0" height="45" width="85">
+              <position x="405" y="230"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="28">
+                      <position x="405" y="260"/>
+                      <position x="392" y="260"/>
+                      <position x="392" y="310"/>
+                      <position x="380" y="310"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="85" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <connector name="writeCSV" localId="27" height="25" width="80">
+              <position x="140" y="50"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="14">
+                  <position x="140" y="60"/>
+                  <position x="117" y="60"/>
+                  <position x="117" y="25"/>
+                  <position x="95" y="25"/>
+                </connection>
+              </connectionPointIn>
+            </connector>
+            <continuation name="writeCSV" localId="28" height="25" width="80">
+              <position x="300" y="300"/>
+              <connectionPointOut>
+                <relPosition x="80" y="10"/>
+              </connectionPointOut>
+            </continuation>
+            <block localId="29" typeName="STRING_TO_INT" executionOrderId="0" height="40" width="90">
+              <position x="655" y="230"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="25" formalParameter="RESULT">
+                      <position x="655" y="260"/>
+                      <position x="620" y="260"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="90" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="30" executionOrderId="0" height="25" width="135" negated="false">
+              <position x="825" y="250"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="29" formalParameter="OUT">
+                  <position x="825" y="260"/>
+                  <position x="745" y="260"/>
+                </connection>
+              </connectionPointIn>
+              <expression>i_status_writeSignal_CSV</expression>
+            </outVariable>
+          </FBD>
+        </body>
+      </pou>
+      <pou name="SourceFromFile" pouType="functionBlock">
+        <interface>
+          <localVars>
+            <variable name="pyTrigger">
+              <type>
+                <BOOL/>
+              </type>
+            </variable>
+          </localVars>
+          <inputVars>
+            <variable name="nameFileFB">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="_1NJ20T001.csv"/>
+              </initialValue>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="value_outFB">
+              <type>
+                <REAL/>
+              </type>
+              <documentation>
+                <xhtml:p><![CDATA[Value out]]></xhtml:p>
+              </documentation>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="python_eval0">
+              <type>
+                <derived name="python_eval"/>
+              </type>
+            </variable>
+            <variable name="str_func">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <inOutVariable localId="1" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="35" y="45"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="2" formalParameter="OUT">
+                  <position x="35" y="55"/>
+                  <position x="25" y="55"/>
+                  <position x="25" y="5"/>
+                  <position x="240" y="5"/>
+                  <position x="240" y="55"/>
+                  <position x="230" y="55"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>pyTrigger</expression>
+            </inOutVariable>
+            <block localId="2" typeName="NOT" executionOrderId="0" height="45" width="50">
+              <position x="180" y="25"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="1">
+                      <position x="180" y="55"/>
+                      <position x="95" y="55"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="50" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="3" typeName="python_eval" instanceName="python_eval0" executionOrderId="0" height="65" width="85">
+              <position x="285" y="80"/>
+              <inputVariables>
+                <variable formalParameter="TRIG">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2" formalParameter="OUT">
+                      <position x="285" y="110"/>
+                      <position x="257" y="110"/>
+                      <position x="257" y="55"/>
+                      <position x="230" y="55"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="CODE">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="11" formalParameter="OUT">
+                      <position x="285" y="135"/>
+                      <position x="240" y="135"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="ACK">
+                  <connectionPointOut>
+                    <relPosition x="85" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="RESULT">
+                  <connectionPointOut>
+                    <relPosition x="85" y="55"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="4" executionOrderId="0" height="25" width="150" negated="false">
+              <position x="10" y="125"/>
+              <connectionPointOut>
+                <relPosition x="150" y="10"/>
+              </connectionPointOut>
+              <expression>nameFileFB</expression>
+            </inVariable>
+            <block localId="5" typeName="STRING_TO_REAL" executionOrderId="0" height="45" width="100">
+              <position x="415" y="105"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="3" formalParameter="RESULT">
+                      <position x="415" y="135"/>
+                      <position x="370" y="135"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="100" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="6" executionOrderId="0" height="25" width="90" negated="false">
+              <position x="550" y="125"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="5" formalParameter="OUT">
+                  <position x="550" y="135"/>
+                  <position x="515" y="135"/>
+                </connection>
+              </connectionPointIn>
+              <expression>value_outFB</expression>
+            </outVariable>
+            <block localId="11" typeName="readSignal" executionOrderId="0" height="45" width="65">
+              <position x="175" y="105"/>
+              <inputVariables>
+                <variable formalParameter="arg">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="4">
+                      <position x="175" y="135"/>
+                      <position x="165" y="135"/>
+                      <position x="165" y="135"/>
+                      <position x="160" y="135"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="65" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+          </FBD>
+        </body>
+      </pou>
+      <pou name="TestSourceFromFile" pouType="program">
+        <interface>
+          <inputVars>
+            <variable name="NameFile">
+              <type>
+                <string/>
+              </type>
+              <initialValue>
+                <simpleValue value="_1NJ20T002.csv"/>
+              </initialValue>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="NameFileDataType">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+          </localVars>
+          <externalVars>
+            <variable name="ValueOUT">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+          </externalVars>
+          <outputVars>
+            <variable name="value_1">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="SourceFromFile0">
+              <type>
+                <derived name="SourceFromFile"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFile1">
+              <type>
+                <derived name="SourceFromFile"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFile2">
+              <type>
+                <derived name="SourceFromFile"/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <block localId="1" typeName="SourceFromFile" instanceName="SourceFromFile0" executionOrderId="0" height="45" width="130">
+              <position x="210" y="65"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="4">
+                      <position x="210" y="95"/>
+                      <position x="145" y="95"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="130" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="4" executionOrderId="0" height="25" width="55" negated="false">
+              <position x="90" y="85"/>
+              <connectionPointOut>
+                <relPosition x="55" y="10"/>
+              </connectionPointOut>
+              <expression>NameFile</expression>
+            </inVariable>
+            <block localId="5" typeName="SourceFromFile" instanceName="SourceFromFile1" executionOrderId="0" height="45" width="130">
+              <position x="210" y="125"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="6">
+                      <position x="210" y="155"/>
+                      <position x="160" y="155"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="130" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="6" executionOrderId="0" height="25" width="100" negated="false">
+              <position x="60" y="145"/>
+              <connectionPointOut>
+                <relPosition x="100" y="10"/>
+              </connectionPointOut>
+              <expression>'_1NJ20T001.csv'</expression>
+            </inVariable>
+            <block localId="7" typeName="ADD" executionOrderId="0" height="65" width="55">
+              <position x="395" y="80"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="1" formalParameter="value_outFB">
+                      <position x="395" y="110"/>
+                      <position x="367" y="110"/>
+                      <position x="367" y="95"/>
+                      <position x="340" y="95"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="5" formalParameter="value_outFB">
+                      <position x="395" y="135"/>
+                      <position x="367" y="135"/>
+                      <position x="367" y="155"/>
+                      <position x="340" y="155"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="55" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="8" executionOrderId="0" height="25" width="85" negated="false">
+              <position x="465" y="100"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="7" formalParameter="OUT">
+                  <position x="465" y="110"/>
+                  <position x="455" y="110"/>
+                  <position x="455" y="110"/>
+                  <position x="450" y="110"/>
+                </connection>
+              </connectionPointIn>
+              <expression>ValueOUT</expression>
+            </outVariable>
+            <block localId="9" typeName="SourceFromFile" instanceName="SourceFromFile2" executionOrderId="0" height="45" width="130">
+              <position x="260" y="200"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="14">
+                      <position x="260" y="230"/>
+                      <position x="190" y="230"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="130" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="11" executionOrderId="0" height="25" width="50" negated="false">
+              <position x="465" y="220"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="9" formalParameter="value_outFB">
+                  <position x="465" y="230"/>
+                  <position x="450" y="230"/>
+                  <position x="450" y="230"/>
+                  <position x="390" y="230"/>
+                </connection>
+              </connectionPointIn>
+              <expression>value_1</expression>
+            </outVariable>
+            <inVariable localId="14" executionOrderId="0" height="25" width="165" negated="false">
+              <position x="25" y="220"/>
+              <connectionPointOut>
+                <relPosition x="165" y="10"/>
+              </connectionPointOut>
+              <expression>NameFileDataType._1NJ20T001</expression>
+            </inVariable>
+          </FBD>
+        </body>
+      </pou>
+      <pou name="readSignal" pouType="function">
+        <interface>
+          <returnType>
+            <string/>
+          </returnType>
+          <inputVars>
+            <variable name="arg">
+              <type>
+                <string/>
+              </type>
+            </variable>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml:p><![CDATA[readSignal:=CONCAT('readSignal("',arg,'")');
+]]></xhtml:p>
+          </ST>
+        </body>
+      </pou>
+      <pou name="DG" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="SourceFromFile0">
+              <type>
+                <derived name="SourceFromFile"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFile1">
+              <type>
+                <derived name="SourceFromFile"/>
+              </type>
+            </variable>
+            <variable name="IN1">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="IN2">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="Exp_IN">
+              <type>
+                <INT/>
+              </type>
+              <initialValue>
+                <simpleValue value="3"/>
+              </initialValue>
+            </variable>
+            <variable name="Val_OUT">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="Rashod_1_IN">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="Rashod_2_IN">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <block localId="1" typeName="SourceFromFile" instanceName="SourceFromFile0" executionOrderId="0" height="45" width="130">
+              <position x="185" y="60"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="3">
+                      <position x="185" y="90"/>
+                      <position x="110" y="90"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="130" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="2" typeName="SourceFromFile" instanceName="SourceFromFile1" executionOrderId="0" height="45" width="130">
+              <position x="195" y="220"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="4">
+                      <position x="195" y="250"/>
+                      <position x="125" y="250"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="130" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="3" executionOrderId="0" height="25" width="80" negated="false">
+              <position x="30" y="80"/>
+              <connectionPointOut>
+                <relPosition x="80" y="10"/>
+              </connectionPointOut>
+              <expression>IN1.Rashod_1</expression>
+            </inVariable>
+            <inVariable localId="4" executionOrderId="0" height="25" width="80" negated="false">
+              <position x="45" y="240"/>
+              <connectionPointOut>
+                <relPosition x="80" y="10"/>
+              </connectionPointOut>
+              <expression>IN2.Rashod_2</expression>
+            </inVariable>
+            <block localId="5" typeName="SQRT" executionOrderId="0" height="45" width="50">
+              <position x="510" y="60"/>
+              <inputVariables>
+                <variable formalParameter="IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="12">
+                      <position x="510" y="90"/>
+                      <position x="435" y="90"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="50" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="6" typeName="EXPT" executionOrderId="0" height="65" width="55">
+              <position x="475" y="215"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="13">
+                      <position x="475" y="245"/>
+                      <position x="452" y="245"/>
+                      <position x="452" y="250"/>
+                      <position x="430" y="250"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="7">
+                      <position x="475" y="270"/>
+                      <position x="355" y="270"/>
+                      <position x="355" y="310"/>
+                      <position x="325" y="310"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="55" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="7" executionOrderId="0" height="25" width="45" negated="false">
+              <position x="280" y="300"/>
+              <connectionPointOut>
+                <relPosition x="45" y="10"/>
+              </connectionPointOut>
+              <expression>Exp_IN</expression>
+            </inVariable>
+            <block localId="8" typeName="ADD" executionOrderId="0" height="65" width="55">
+              <position x="635" y="130"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="5" formalParameter="OUT">
+                      <position x="635" y="160"/>
+                      <position x="597" y="160"/>
+                      <position x="597" y="90"/>
+                      <position x="560" y="90"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="6" formalParameter="OUT">
+                      <position x="635" y="185"/>
+                      <position x="557" y="185"/>
+                      <position x="557" y="245"/>
+                      <position x="530" y="245"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="55" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="9" executionOrderId="0" height="25" width="55" negated="false">
+              <position x="750" y="155"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="8" formalParameter="OUT">
+                  <position x="750" y="165"/>
+                  <position x="720" y="165"/>
+                  <position x="720" y="160"/>
+                  <position x="690" y="160"/>
+                </connection>
+              </connectionPointIn>
+              <expression>Val_OUT</expression>
+            </outVariable>
+            <inOutVariable localId="12" executionOrderId="0" height="25" width="75" negatedOut="false" negatedIn="false">
+              <position x="360" y="80"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="1" formalParameter="value_outFB">
+                  <position x="360" y="90"/>
+                  <position x="315" y="90"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="75" y="10"/>
+              </connectionPointOut>
+              <expression>Rashod_1_IN</expression>
+            </inOutVariable>
+            <inOutVariable localId="13" executionOrderId="0" height="25" width="75" negatedOut="false" negatedIn="false">
+              <position x="355" y="240"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="2" formalParameter="value_outFB">
+                  <position x="355" y="250"/>
+                  <position x="325" y="250"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="75" y="10"/>
+              </connectionPointOut>
+              <expression>Rashod_2_IN</expression>
+            </inOutVariable>
+          </FBD>
+        </body>
+      </pou>
+      <pou name="TestCSV" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="pyTriger">
+              <type>
+                <BOOL/>
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE"/>
+              </initialValue>
+            </variable>
+            <variable name="Tags">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="result">
+              <type>
+                <string/>
+              </type>
+            </variable>
+            <variable name="i_status_read_CSV">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="i_status_read_CSV1">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="i_status_write_CSV">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="i_status_open_CSV">
+              <type>
+                <INT/>
+              </type>
+            </variable>
+            <variable name="val_out_1">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_2">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_3">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_4">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_5">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_6">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_7">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_8">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_9">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_10">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_out_12">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+            <variable name="val_IN">
+              <type>
+                <derived name="datatype0"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV0">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV1">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFileCSV0">
+              <type>
+                <derived name="SourceFromFileCSV"/>
+              </type>
+            </variable>
+            <variable name="SourceFromFileCSV1">
+              <type>
+                <derived name="SourceFromFileCSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV2">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="get_value_CSV3">
+              <type>
+                <derived name="get_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV0">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV1">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV2">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+            <variable name="set_value_CSV3">
+              <type>
+                <derived name="set_value_CSV"/>
+              </type>
+            </variable>
+          </localVars>
+        </interface>
+        <body>
+          <FBD>
+            <inVariable localId="2" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="25" y="55"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>Tags.PID_1</expression>
+            </inVariable>
+            <outVariable localId="3" executionOrderId="0" height="25" width="145" negated="false">
+              <position x="405" y="55"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="17" formalParameter="i_status_readSignal_CSV">
+                  <position x="405" y="65"/>
+                  <position x="355" y="65"/>
+                </connection>
+              </connectionPointIn>
+              <expression>i_status_read_CSV</expression>
+            </outVariable>
+            <inVariable localId="13" executionOrderId="0" height="25" width="60" negated="false">
+              <position x="25" y="180"/>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_IN.IN</expression>
+            </inVariable>
+            <block localId="14" typeName="get_value_CSV" instanceName="get_value_CSV0" executionOrderId="0" height="65" width="125">
+              <position x="165" y="135"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="165" y="165"/>
+                      <position x="130" y="165"/>
+                      <position x="130" y="65"/>
+                      <position x="95" y="65"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="13">
+                      <position x="165" y="190"/>
+                      <position x="85" y="190"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="15" typeName="get_value_CSV" instanceName="get_value_CSV1" executionOrderId="0" height="65" width="125">
+              <position x="170" y="220"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="170" y="250"/>
+                      <position x="115" y="250"/>
+                      <position x="115" y="65"/>
+                      <position x="95" y="65"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="16">
+                      <position x="170" y="275"/>
+                      <position x="95" y="275"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="16" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="25" y="265"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>val_IN.OUT</expression>
+            </inVariable>
+            <block localId="17" typeName="SourceFromFileCSV" instanceName="SourceFromFileCSV0" executionOrderId="0" height="60" width="190">
+              <position x="165" y="35"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="2">
+                      <position x="165" y="65"/>
+                      <position x="95" y="65"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status_readSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="i_status_writeSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="50"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="18" typeName="SourceFromFileCSV" instanceName="SourceFromFileCSV1" executionOrderId="0" height="60" width="190">
+              <position x="170" y="305"/>
+              <inputVariables>
+                <variable formalParameter="nameFileFB">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="170" y="335"/>
+                      <position x="90" y="335"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status_readSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="30"/>
+                  </connectionPointOut>
+                </variable>
+                <variable formalParameter="i_status_writeSignal_CSV">
+                  <connectionPointOut>
+                    <relPosition x="190" y="50"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="19" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="20" y="325"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>Tags.PID_2</expression>
+            </inVariable>
+            <block localId="20" typeName="get_value_CSV" instanceName="get_value_CSV2" executionOrderId="0" height="65" width="125">
+              <position x="175" y="370"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="175" y="400"/>
+                      <position x="132" y="400"/>
+                      <position x="132" y="335"/>
+                      <position x="90" y="335"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="23">
+                      <position x="175" y="425"/>
+                      <position x="80" y="425"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="23" executionOrderId="0" height="25" width="60" negated="false">
+              <position x="20" y="415"/>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>'IN_1'</expression>
+            </inVariable>
+            <inVariable localId="24" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="15" y="455"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>'IN_2'</expression>
+            </inVariable>
+            <outVariable localId="26" executionOrderId="0" height="25" width="110" negated="false">
+              <position x="410" y="325"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="18" formalParameter="i_status_readSignal_CSV">
+                  <position x="410" y="335"/>
+                  <position x="360" y="335"/>
+                </connection>
+              </connectionPointIn>
+              <expression>i_status_read_CSV1</expression>
+            </outVariable>
+            <block localId="27" typeName="get_value_CSV" instanceName="get_value_CSV3" executionOrderId="0" height="65" width="125">
+              <position x="180" y="445"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="19">
+                      <position x="180" y="475"/>
+                      <position x="135" y="475"/>
+                      <position x="135" y="335"/>
+                      <position x="90" y="335"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="24">
+                      <position x="180" y="500"/>
+                      <position x="132" y="500"/>
+                      <position x="132" y="465"/>
+                      <position x="85" y="465"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="value_outFB">
+                  <connectionPointOut>
+                    <relPosition x="125" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <block localId="29" typeName="ADD" executionOrderId="0" height="65" width="55">
+              <position x="515" y="395"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="25">
+                      <position x="515" y="425"/>
+                      <position x="475" y="425"/>
+                      <position x="475" y="400"/>
+                      <position x="435" y="400"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="28">
+                      <position x="515" y="450"/>
+                      <position x="470" y="450"/>
+                      <position x="470" y="475"/>
+                      <position x="425" y="475"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="55" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inOutVariable localId="25" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="375" y="390"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="20" formalParameter="value_outFB">
+                  <position x="375" y="400"/>
+                  <position x="300" y="400"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_3</expression>
+            </inOutVariable>
+            <inOutVariable localId="28" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="365" y="465"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="27" formalParameter="value_outFB">
+                  <position x="365" y="475"/>
+                  <position x="305" y="475"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_4</expression>
+            </inOutVariable>
+            <block localId="31" typeName="MUL" executionOrderId="0" height="65" width="55">
+              <position x="470" y="170"/>
+              <inputVariables>
+                <variable formalParameter="IN1">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="8">
+                      <position x="470" y="200"/>
+                      <position x="442" y="200"/>
+                      <position x="442" y="165"/>
+                      <position x="415" y="165"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="IN2">
+                  <connectionPointIn>
+                    <relPosition x="0" y="55"/>
+                    <connection refLocalId="11">
+                      <position x="470" y="225"/>
+                      <position x="442" y="225"/>
+                      <position x="442" y="250"/>
+                      <position x="415" y="250"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="OUT">
+                  <connectionPointOut>
+                    <relPosition x="55" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inOutVariable localId="8" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="355" y="155"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="14" formalParameter="value_outFB">
+                  <position x="355" y="165"/>
+                  <position x="290" y="165"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_1</expression>
+            </inOutVariable>
+            <inOutVariable localId="11" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="355" y="240"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="15" formalParameter="value_outFB">
+                  <position x="355" y="250"/>
+                  <position x="295" y="250"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_2</expression>
+            </inOutVariable>
+            <inOutVariable localId="32" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="550" y="190"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="31" formalParameter="OUT">
+                  <position x="550" y="200"/>
+                  <position x="525" y="200"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_6</expression>
+            </inOutVariable>
+            <inVariable localId="34" executionOrderId="0" height="25" width="70" negated="false">
+              <position x="585" y="5"/>
+              <connectionPointOut>
+                <relPosition x="70" y="10"/>
+              </connectionPointOut>
+              <expression>Tags.PID_1</expression>
+            </inVariable>
+            <inVariable localId="39" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="585" y="45"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_1'</expression>
+            </inVariable>
+            <block localId="40" typeName="set_value_CSV" instanceName="set_value_CSV0" executionOrderId="0" height="85" width="105">
+              <position x="720" y="15"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="34">
+                      <position x="720" y="45"/>
+                      <position x="687" y="45"/>
+                      <position x="687" y="15"/>
+                      <position x="655" y="15"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="39">
+                      <position x="720" y="65"/>
+                      <position x="685" y="65"/>
+                      <position x="685" y="55"/>
+                      <position x="650" y="55"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="8">
+                      <position x="720" y="85"/>
+                      <position x="440" y="85"/>
+                      <position x="440" y="165"/>
+                      <position x="415" y="165"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <outVariable localId="41" executionOrderId="0" height="25" width="105" negated="false">
+              <position x="885" y="35"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="40" formalParameter="i_status">
+                  <position x="885" y="45"/>
+                  <position x="825" y="45"/>
+                </connection>
+              </connectionPointIn>
+              <expression>i_status_write_CSV</expression>
+            </outVariable>
+            <block localId="42" typeName="set_value_CSV" instanceName="set_value_CSV1" executionOrderId="0" height="85" width="105">
+              <position x="725" y="115"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="34">
+                      <position x="725" y="145"/>
+                      <position x="690" y="145"/>
+                      <position x="690" y="15"/>
+                      <position x="655" y="15"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="43">
+                      <position x="725" y="165"/>
+                      <position x="690" y="165"/>
+                      <position x="690" y="105"/>
+                      <position x="655" y="105"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="11">
+                      <position x="725" y="185"/>
+                      <position x="435" y="185"/>
+                      <position x="435" y="250"/>
+                      <position x="415" y="250"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="43" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="590" y="95"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_2'</expression>
+            </inVariable>
+            <block localId="44" typeName="set_value_CSV" instanceName="set_value_CSV2" executionOrderId="0" height="80" width="105">
+              <position x="730" y="215"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="34">
+                      <position x="730" y="245"/>
+                      <position x="692" y="245"/>
+                      <position x="692" y="15"/>
+                      <position x="655" y="15"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="45">
+                      <position x="730" y="265"/>
+                      <position x="692" y="265"/>
+                      <position x="692" y="245"/>
+                      <position x="655" y="245"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="32">
+                      <position x="730" y="285"/>
+                      <position x="630" y="285"/>
+                      <position x="630" y="200"/>
+                      <position x="610" y="200"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inVariable localId="45" executionOrderId="0" height="25" width="65" negated="false">
+              <position x="590" y="235"/>
+              <connectionPointOut>
+                <relPosition x="65" y="10"/>
+              </connectionPointOut>
+              <expression>'val_out_6'</expression>
+            </inVariable>
+            <block localId="46" typeName="set_value_CSV" instanceName="set_value_CSV3" executionOrderId="0" height="85" width="105">
+              <position x="735" y="315"/>
+              <inputVariables>
+                <variable formalParameter="nameFile">
+                  <connectionPointIn>
+                    <relPosition x="0" y="30"/>
+                    <connection refLocalId="34">
+                      <position x="735" y="345"/>
+                      <position x="695" y="345"/>
+                      <position x="695" y="15"/>
+                      <position x="655" y="15"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="nameField">
+                  <connectionPointIn>
+                    <relPosition x="0" y="50"/>
+                    <connection refLocalId="47">
+                      <position x="735" y="365"/>
+                      <position x="697" y="365"/>
+                      <position x="697" y="380"/>
+                      <position x="660" y="380"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+                <variable formalParameter="value_IN">
+                  <connectionPointIn>
+                    <relPosition x="0" y="70"/>
+                    <connection refLocalId="30">
+                      <position x="735" y="385"/>
+                      <position x="692" y="385"/>
+                      <position x="692" y="425"/>
+                      <position x="650" y="425"/>
+                    </connection>
+                  </connectionPointIn>
+                </variable>
+              </inputVariables>
+              <inOutVariables/>
+              <outputVariables>
+                <variable formalParameter="i_status">
+                  <connectionPointOut>
+                    <relPosition x="105" y="30"/>
+                  </connectionPointOut>
+                </variable>
+              </outputVariables>
+            </block>
+            <inOutVariable localId="30" executionOrderId="0" height="25" width="60" negatedOut="false" negatedIn="false">
+              <position x="590" y="415"/>
+              <connectionPointIn>
+                <relPosition x="0" y="10"/>
+                <connection refLocalId="29" formalParameter="OUT">
+                  <position x="590" y="425"/>
+                  <position x="570" y="425"/>
+                </connection>
+              </connectionPointIn>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>val_out_5</expression>
+            </inOutVariable>
+            <inVariable localId="47" executionOrderId="0" height="25" width="60" negated="false">
+              <position x="600" y="370"/>
+              <connectionPointOut>
+                <relPosition x="60" y="10"/>
+              </connectionPointOut>
+              <expression>'VAL_5'</expression>
+            </inVariable>
+          </FBD>
+        </body>
+        <documentation>
+          <xhtml:p><![CDATA[Testing fron CSV-files]]></xhtml:p>
+        </documentation>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations>
+      <configuration name="config">
+        <resource name="res_pytest">
+          <task name="mainTask" priority="0" interval="T#1s0ms"/>
+          <globalVars>
+            <variable name="ValueOUT">
+              <type>
+                <REAL/>
+              </type>
+            </variable>
+          </globalVars>
+          <pouInstance name="mainPrg" typeName="TestCSV_v_3"/>
+        </resource>
+        <globalVars>
+          <variable name="Global_RS">
+            <type>
+              <derived name="RS"/>
+            </type>
+          </variable>
+        </globalVars>
+      </configuration>
+    </configurations>
+  </instances>
+</project>

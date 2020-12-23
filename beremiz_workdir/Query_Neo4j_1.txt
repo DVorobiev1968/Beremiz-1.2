@@ -1,0 +1,5 @@
+CREATE (P1: Program {id:'P1', type:1, name: "TestCSV_v_2", tagname: "P::TestCSV_v_2", icon: "TestCSV_v_2.svg"}), 
+(P2: Program {id:'P2', type:1, name: "TestCSV_v_1", tagname: "P::TestCSV_v_1", icon: "TestCSV_v_1.svg"}), 
+(P3: Program {id:'P3', type:1, name: "TestSourceFromFile", tagname: "P::TestSourceFromFile", icon: "TestSourceFromFile.svg"}), 
+(P4: Program {id:'P4', type:1, name: "DG", tagname: "P::DG", icon: "DG.svg"}), 
+(P5: Program {id:'P5', type:1, name: "TestCSV", tagname: "P::TestCSV", icon: "TestCSV.svg"})

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<PyFile xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <variables>
+    <variable name="debug" type="INT" initial="3" desc="Print Debug 1:info+warning+error, 2:warning+error, 3:error, 4:none"/>
+    <variable name="PATH" type="STRING" initial="/users/user/Beremiz/beremiz_workdir/" desc="PATH to Source file"/>
+    <variable name="i_status" type="INT" initial="1" desc="Error Code readSignal"/>
+    <variable name="NameServer" type="STRING" initial="localhost" desc="Name server"/>
+    <variable name="port" type="INT" initial="8889" desc="TCP/IP port"/>
+    <variable name="INFO" type="INT" initial="1" desc="Debug message level"/>
+    <variable name="WARNING" type="INT" initial="2" desc="Debug message level"/>
+    <variable name="ERROR" type="INT" initial="3" desc="Debug message level"/>
+  </variables>
+  <globals>
+    <xhtml:p><![CDATA[
+print "All python PLC load globals variables: ", PLCGlobalsDesc
+print "Current extention name: ", __ext_name__
+]]></xhtml:p>
+  </globals>
+  <init>
+    <xhtml:p><![CDATA[
+
+]]></xhtml:p>
+  </init>
+  <cleanup>
+    <xhtml:p><![CDATA[
+]]></xhtml:p>
+  </cleanup>
+  <start>
+    <xhtml:p><![CDATA[
+]]></xhtml:p>
+  </start>
+  <stop>
+    <xhtml:p><![CDATA[
+]]></xhtml:p>
+  </stop>
+</PyFile>

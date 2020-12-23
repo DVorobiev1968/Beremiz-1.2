@@ -1,0 +1,11 @@
+Сборка прошла успешно.
+Ошибка импорта WAMP : No module named autobahn.twisted
+Порт HTTP-интерфейса : 8009
+Порт Pyro : 61351
+URI для Pyro : PYRO://127.0.0.1:61351/c0a8002f2ab01ea2750cc48a99bd5c1b
+Текущая рабочая директория : c:\users\user26\appdata\local\temp\tmpglzbxc
+PYRO подключение к URI: PYROLOC://127.0.0.1:61351
+PLCobject : OFF LOG :NewPLC (868ef557e5a4b4396141c1d4bdc44191)
+Передача успешно завершена.
+ПЛК запускается
+Отладчик запрещен

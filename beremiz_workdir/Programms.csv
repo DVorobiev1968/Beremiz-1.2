@@ -1,0 +1,6 @@
+ID,name,type,tagname,icon
+1,TestCSV_v_2,1,P::TestCSV_v_2,TestCSV_v_2.svg
+2,TestCSV_v_1,1,P::TestCSV_v_1,TestCSV_v_1.svg
+3,TestSourceFromFile,1,P::TestSourceFromFile,TestSourceFromFile.svg
+4,DG,1,P::DG,DG.svg
+5,TestCSV,1,P::TestCSV,TestCSV.svg
