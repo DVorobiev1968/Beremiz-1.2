@@ -19,7 +19,7 @@
 #include <string.h>
 
 /* The fifo (fixed size, as number of FB is fixed) */
-static PYTHON_EVAL* EvalFBs[2];
+static PYTHON_EVAL* EvalFBs[3];
 /* Producer and consumer cursors */
 static int Current_PLC_EvalFB;
 static int Current_Python_EvalFB;
@@ -50,7 +50,7 @@ int __init_py_ext()
 	Current_Python_EvalFB = 0;
 	Current_PLC_EvalFB = 0;
 	PythonState = PYTHON_LOCKED_BY_PYTHON;
-	for(i = 0; i < 2; i++)
+	for(i = 0; i < 3; i++)
 		EvalFBs[i] = NULL;
   return 0;
 }
@@ -147,7 +147,7 @@ void __PythonEvalFB(int poll, PYTHON_EVAL* data__)
 			PythonState |= PYTHON_MUSTWAKEUP;
 			/*printf("__PythonEvalFB push %d - %*s\n",Current_PLC_EvalFB, data__->BUFFER.len, data__->BUFFER.body);*/
 			/* Get a new line */
-			Current_PLC_EvalFB = (Current_PLC_EvalFB + 1) % 2;
+			Current_PLC_EvalFB = (Current_PLC_EvalFB + 1) % 3;
 		}
 	}
 }
@@ -185,7 +185,7 @@ char* PythonIterator(char* result, void** id)
 		/* Mark block as answered */
 		__SET_VAR(data__->, STATE,, PYTHON_FB_ANSWERED);
 		/* Get a new line */
-		Current_Python_EvalFB = (Current_Python_EvalFB + 1) % 2;
+		Current_Python_EvalFB = (Current_Python_EvalFB + 1) % 3;
 		//printf("PythonIterator ++ Current_Python_EvalFB %d\n", Current_Python_EvalFB);
 	}
 	/* while next slot is empty */

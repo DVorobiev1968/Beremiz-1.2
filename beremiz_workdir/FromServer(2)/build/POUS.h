@@ -203,6 +203,70 @@ STRING CALL_METHOD(
   INT ID_OBJ, 
   INT ID_SUBOBJ, 
   REAL D_VALUE);
+// FUNCTION_BLOCK LOAD_FOR_ALGORITM
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(INT,ID_NODE)
+  __DECLARE_VAR(INT,ID_OBJ)
+  __DECLARE_VAR(INT,ID_SUBOBJ)
+  __DECLARE_VAR(REAL,D_VALUE)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,PYTRIGGER)
+  __DECLARE_VAR(STRING,NAMEFUNCTION)
+  PYTHON_EVAL PYTHON_EVAL0;
+  __DECLARE_VAR(BOOL,NOT2_OUT)
+  __DECLARE_VAR(STRING,CALL_METHOD8_OUT)
+  __DECLARE_VAR(REAL,STRING_TO_REAL12_OUT)
+
+} LOAD_FOR_ALGORITM;
+
+void LOAD_FOR_ALGORITM_init__(LOAD_FOR_ALGORITM *data__, BOOL retain);
+// Code part
+void LOAD_FOR_ALGORITM_body__(LOAD_FOR_ALGORITM *data__);
+// PROGRAM TEST_21
+// Data part
+typedef struct {
+  // PROGRAM Interface - IN, OUT, IN_OUT variables
+
+  // PROGRAM private variables - TEMP, private and located variables
+  __DECLARE_VAR(INT,ID_NODE)
+  __DECLARE_VAR(INT,I_OBJ)
+  __DECLARE_VAR(INT,I_SUBOBJ)
+  __DECLARE_VAR(REAL,D_VALUE)
+  LOAD_FOR_ALGORITM LOAD_FOR_ALGORITM0;
+
+} TEST_21;
+
+void TEST_21_init__(TEST_21 *data__, BOOL retain);
+// Code part
+void TEST_21_body__(TEST_21 *data__);
+// FUNCTION_BLOCK SAVE_FOR_ALGORITM
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(INT,ID_NODE)
+  __DECLARE_VAR(INT,ID_OBJ)
+  __DECLARE_VAR(INT,ID_SUBOBJ)
+  __DECLARE_VAR(REAL,D_VALUE)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,PYTRIGGER)
+  __DECLARE_VAR(STRING,NAMEFUNCTION)
+  PYTHON_EVAL PYTHON_EVAL0;
+  __DECLARE_VAR(BOOL,NOT2_OUT)
+  __DECLARE_VAR(STRING,CALL_METHOD8_OUT)
+
+} SAVE_FOR_ALGORITM;
+
+void SAVE_FOR_ALGORITM_init__(SAVE_FOR_ALGORITM *data__, BOOL retain);
+// Code part
+void SAVE_FOR_ALGORITM_body__(SAVE_FOR_ALGORITM *data__);
 // FUNCTION_BLOCK LOAD_SOCKET_NODE
 // Data part
 typedef struct {
@@ -227,6 +291,48 @@ typedef struct {
 void LOAD_SOCKET_NODE_init__(LOAD_SOCKET_NODE *data__, BOOL retain);
 // Code part
 void LOAD_SOCKET_NODE_body__(LOAD_SOCKET_NODE *data__);
+// PROGRAM TEST_3
+// Data part
+typedef struct {
+  // PROGRAM Interface - IN, OUT, IN_OUT variables
+
+  // PROGRAM private variables - TEMP, private and located variables
+  __DECLARE_VAR(INT,ID_NODE)
+  __DECLARE_VAR(INT,ID_NODE_ALGORITM)
+  __DECLARE_VAR(INT,I_OBJ)
+  __DECLARE_VAR(INT,I_SUBOBJ)
+  __DECLARE_VAR(BOOL,TRIGGER0)
+  __DECLARE_VAR(STRING,S_OUT)
+  __DECLARE_VAR(REAL,D_VALUE)
+  __DECLARE_VAR(REAL,D_VAL_OUT_1)
+  __DECLARE_VAR(STRING,CYCLE)
+  SAVE_FOR_ALGORITM SAVE_FOR_ALGORITM0;
+  LOAD_FOR_ALGORITM LOAD_FOR_ALGORITM0;
+  LOAD_SOCKET_NODE LOAD_SOCKET_NODE0;
+  __DECLARE_VAR(REAL,EXPT37_OUT)
+
+} TEST_3;
+
+void TEST_3_init__(TEST_3 *data__, BOOL retain);
+// Code part
+void TEST_3_body__(TEST_3 *data__);
+// PROGRAM TEST_2
+// Data part
+typedef struct {
+  // PROGRAM Interface - IN, OUT, IN_OUT variables
+
+  // PROGRAM private variables - TEMP, private and located variables
+  __DECLARE_VAR(INT,ID_NODE)
+  __DECLARE_VAR(INT,I_OBJ)
+  __DECLARE_VAR(INT,I_SUBOBJ)
+  __DECLARE_VAR(REAL,D_VALUE)
+  LOAD_SOCKET_NODE LOAD_SOCKET_NODE0;
+
+} TEST_2;
+
+void TEST_2_init__(TEST_2 *data__, BOOL retain);
+// Code part
+void TEST_2_body__(TEST_2 *data__);
 // FUNCTION_BLOCK SET_SOCKET_NODE
 // Data part
 typedef struct {
@@ -250,6 +356,30 @@ typedef struct {
 void SET_SOCKET_NODE_init__(SET_SOCKET_NODE *data__, BOOL retain);
 // Code part
 void SET_SOCKET_NODE_body__(SET_SOCKET_NODE *data__);
+// PROGRAM TEST_1
+// Data part
+typedef struct {
+  // PROGRAM Interface - IN, OUT, IN_OUT variables
+
+  // PROGRAM private variables - TEMP, private and located variables
+  __DECLARE_VAR(INT,ID_NODE)
+  __DECLARE_VAR(INT,I_OBJ)
+  __DECLARE_VAR(INT,I_OBJ_1)
+  __DECLARE_VAR(INT,I_SUBOBJ)
+  __DECLARE_VAR(BOOL,TRIGGER0)
+  __DECLARE_VAR(STRING,S_OUT)
+  __DECLARE_VAR(REAL,D_VALUE)
+  __DECLARE_VAR(REAL,D_VAL_OUT_1)
+  LOAD_SOCKET_NODE LOAD_SOCKET_NODE0;
+  __DECLARE_VAR(STRING,CYCLE)
+  SET_SOCKET_NODE SET_SOCKET_NODE0;
+  __DECLARE_VAR(REAL,EXPT31_OUT)
+
+} TEST_1;
+
+void TEST_1_init__(TEST_1 *data__, BOOL retain);
+// Code part
+void TEST_1_body__(TEST_1 *data__);
 // PROGRAM MAINSERVER
 // Data part
 typedef struct {
@@ -276,28 +406,4 @@ typedef struct {
 void MAINSERVER_init__(MAINSERVER *data__, BOOL retain);
 // Code part
 void MAINSERVER_body__(MAINSERVER *data__);
-// PROGRAM TEST_1
-// Data part
-typedef struct {
-  // PROGRAM Interface - IN, OUT, IN_OUT variables
-
-  // PROGRAM private variables - TEMP, private and located variables
-  __DECLARE_VAR(INT,ID_NODE)
-  __DECLARE_VAR(INT,I_OBJ)
-  __DECLARE_VAR(INT,I_OBJ_1)
-  __DECLARE_VAR(INT,I_SUBOBJ)
-  __DECLARE_VAR(BOOL,TRIGGER0)
-  __DECLARE_VAR(STRING,S_OUT)
-  __DECLARE_VAR(REAL,D_VALUE)
-  __DECLARE_VAR(REAL,D_VAL_OUT_1)
-  LOAD_SOCKET_NODE LOAD_SOCKET_NODE0;
-  __DECLARE_VAR(STRING,CYCLE)
-  SET_SOCKET_NODE SET_SOCKET_NODE0;
-  __DECLARE_VAR(REAL,EXPT31_OUT)
-
-} TEST_1;
-
-void TEST_1_init__(TEST_1 *data__, BOOL retain);
-// Code part
-void TEST_1_body__(TEST_1 *data__);
 #endif //__POUS_H

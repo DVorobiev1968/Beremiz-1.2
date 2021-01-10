@@ -40,5 +40,5 @@ void RESOURCE1_run__(unsigned long tick);
 void config_run__(unsigned long tick) {
   RESOURCE1_run__(tick);
 }
-unsigned long long common_ticktime__ = 50000000ULL; /*ns*/
+unsigned long long common_ticktime__ = 1000000000ULL; /*ns*/
 unsigned long greatest_tick_count__ = (unsigned long)0UL; /*tick*/

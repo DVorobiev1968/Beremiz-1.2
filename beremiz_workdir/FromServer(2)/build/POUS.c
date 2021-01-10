@@ -518,6 +518,140 @@ __end:
 }
 
 
+void LOAD_FOR_ALGORITM_init__(LOAD_FOR_ALGORITM *data__, BOOL retain) {
+  __INIT_VAR(data__->EN,__BOOL_LITERAL(TRUE),retain)
+  __INIT_VAR(data__->ENO,__BOOL_LITERAL(TRUE),retain)
+  __INIT_VAR(data__->PYTRIGGER,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->NAMEFUNCTION,__STRING_LITERAL(18,"load_for_algoritm("),retain)
+  __INIT_VAR(data__->ID_NODE,1,retain)
+  __INIT_VAR(data__->ID_OBJ,4096,retain)
+  __INIT_VAR(data__->ID_SUBOBJ,0,retain)
+  PYTHON_EVAL_init__(&data__->PYTHON_EVAL0,retain);
+  __INIT_VAR(data__->D_VALUE,0,retain)
+  __INIT_VAR(data__->NOT2_OUT,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->CALL_METHOD8_OUT,__STRING_LITERAL(0,""),retain)
+  __INIT_VAR(data__->STRING_TO_REAL12_OUT,0,retain)
+}
+
+// Code part
+void LOAD_FOR_ALGORITM_body__(LOAD_FOR_ALGORITM *data__) {
+  // Control execution
+  if (!__GET_VAR(data__->EN)) {
+    __SET_VAR(data__->,ENO,,__BOOL_LITERAL(FALSE));
+    return;
+  }
+  else {
+    __SET_VAR(data__->,ENO,,__BOOL_LITERAL(TRUE));
+  }
+  // Initialise TEMP variables
+
+  __SET_VAR(data__->,NOT2_OUT,,!(__GET_VAR(data__->PYTRIGGER,)));
+  __SET_VAR(data__->,PYTRIGGER,,__GET_VAR(data__->NOT2_OUT,));
+  __SET_VAR(data__->,CALL_METHOD8_OUT,,CALL_METHOD(
+    (BOOL)__BOOL_LITERAL(TRUE),
+    NULL,
+    (INT)__GET_VAR(data__->ID_NODE,),
+    (STRING)__GET_VAR(data__->NAMEFUNCTION,),
+    (INT)__GET_VAR(data__->ID_OBJ,),
+    (INT)__GET_VAR(data__->ID_SUBOBJ,),
+    (REAL)0.0));
+  __SET_VAR(data__->PYTHON_EVAL0.,TRIG,,__GET_VAR(data__->NOT2_OUT,));
+  __SET_VAR(data__->PYTHON_EVAL0.,CODE,,__GET_VAR(data__->CALL_METHOD8_OUT,));
+  PYTHON_EVAL_body__(&data__->PYTHON_EVAL0);
+  __SET_VAR(data__->,STRING_TO_REAL12_OUT,,STRING_TO_REAL(
+    (BOOL)__BOOL_LITERAL(TRUE),
+    NULL,
+    (STRING)__GET_VAR(data__->PYTHON_EVAL0.RESULT,)));
+  __SET_VAR(data__->,D_VALUE,,__GET_VAR(data__->STRING_TO_REAL12_OUT,));
+
+  goto __end;
+
+__end:
+  return;
+} // LOAD_FOR_ALGORITM_body__() 
+
+
+
+
+
+void TEST_21_init__(TEST_21 *data__, BOOL retain) {
+  __INIT_VAR(data__->ID_NODE,1,retain)
+  __INIT_VAR(data__->I_OBJ,4096,retain)
+  __INIT_VAR(data__->I_SUBOBJ,0,retain)
+  __INIT_VAR(data__->D_VALUE,0,retain)
+  LOAD_FOR_ALGORITM_init__(&data__->LOAD_FOR_ALGORITM0,retain);
+}
+
+// Code part
+void TEST_21_body__(TEST_21 *data__) {
+  // Initialise TEMP variables
+
+  __SET_VAR(data__->LOAD_FOR_ALGORITM0.,ID_NODE,,__GET_VAR(data__->ID_NODE,));
+  __SET_VAR(data__->LOAD_FOR_ALGORITM0.,ID_OBJ,,__GET_VAR(data__->I_OBJ,));
+  __SET_VAR(data__->LOAD_FOR_ALGORITM0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
+  LOAD_FOR_ALGORITM_body__(&data__->LOAD_FOR_ALGORITM0);
+  __SET_VAR(data__->,D_VALUE,,__GET_VAR(data__->LOAD_FOR_ALGORITM0.D_VALUE,));
+
+  goto __end;
+
+__end:
+  return;
+} // TEST_21_body__() 
+
+
+
+
+
+void SAVE_FOR_ALGORITM_init__(SAVE_FOR_ALGORITM *data__, BOOL retain) {
+  __INIT_VAR(data__->EN,__BOOL_LITERAL(TRUE),retain)
+  __INIT_VAR(data__->ENO,__BOOL_LITERAL(TRUE),retain)
+  __INIT_VAR(data__->PYTRIGGER,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->NAMEFUNCTION,__STRING_LITERAL(18,"save_for_algoritm("),retain)
+  __INIT_VAR(data__->ID_NODE,2,retain)
+  __INIT_VAR(data__->ID_OBJ,4096,retain)
+  __INIT_VAR(data__->ID_SUBOBJ,0,retain)
+  PYTHON_EVAL_init__(&data__->PYTHON_EVAL0,retain);
+  __INIT_VAR(data__->D_VALUE,0,retain)
+  __INIT_VAR(data__->NOT2_OUT,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->CALL_METHOD8_OUT,__STRING_LITERAL(0,""),retain)
+}
+
+// Code part
+void SAVE_FOR_ALGORITM_body__(SAVE_FOR_ALGORITM *data__) {
+  // Control execution
+  if (!__GET_VAR(data__->EN)) {
+    __SET_VAR(data__->,ENO,,__BOOL_LITERAL(FALSE));
+    return;
+  }
+  else {
+    __SET_VAR(data__->,ENO,,__BOOL_LITERAL(TRUE));
+  }
+  // Initialise TEMP variables
+
+  __SET_VAR(data__->,NOT2_OUT,,!(__GET_VAR(data__->PYTRIGGER,)));
+  __SET_VAR(data__->,PYTRIGGER,,__GET_VAR(data__->NOT2_OUT,));
+  __SET_VAR(data__->,CALL_METHOD8_OUT,,CALL_METHOD(
+    (BOOL)__BOOL_LITERAL(TRUE),
+    NULL,
+    (INT)__GET_VAR(data__->ID_NODE,),
+    (STRING)__GET_VAR(data__->NAMEFUNCTION,),
+    (INT)__GET_VAR(data__->ID_OBJ,),
+    (INT)__GET_VAR(data__->ID_SUBOBJ,),
+    (REAL)__GET_VAR(data__->D_VALUE,)));
+  __SET_VAR(data__->PYTHON_EVAL0.,TRIG,,__GET_VAR(data__->NOT2_OUT,));
+  __SET_VAR(data__->PYTHON_EVAL0.,CODE,,__GET_VAR(data__->CALL_METHOD8_OUT,));
+  PYTHON_EVAL_body__(&data__->PYTHON_EVAL0);
+
+  goto __end;
+
+__end:
+  return;
+} // SAVE_FOR_ALGORITM_body__() 
+
+
+
+
+
 void LOAD_SOCKET_NODE_init__(LOAD_SOCKET_NODE *data__, BOOL retain) {
   __INIT_VAR(data__->EN,__BOOL_LITERAL(TRUE),retain)
   __INIT_VAR(data__->ENO,__BOOL_LITERAL(TRUE),retain)
@@ -574,6 +708,85 @@ __end:
 
 
 
+void TEST_3_init__(TEST_3 *data__, BOOL retain) {
+  __INIT_VAR(data__->ID_NODE,1,retain)
+  __INIT_VAR(data__->ID_NODE_ALGORITM,2,retain)
+  __INIT_VAR(data__->I_OBJ,4096,retain)
+  __INIT_VAR(data__->I_SUBOBJ,0,retain)
+  __INIT_VAR(data__->TRIGGER0,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->S_OUT,__STRING_LITERAL(0,""),retain)
+  __INIT_VAR(data__->D_VALUE,0,retain)
+  __INIT_VAR(data__->D_VAL_OUT_1,0,retain)
+  __INIT_VAR(data__->CYCLE,__STRING_LITERAL(5,"0:0:1"),retain)
+  SAVE_FOR_ALGORITM_init__(&data__->SAVE_FOR_ALGORITM0,retain);
+  LOAD_FOR_ALGORITM_init__(&data__->LOAD_FOR_ALGORITM0,retain);
+  LOAD_SOCKET_NODE_init__(&data__->LOAD_SOCKET_NODE0,retain);
+  __INIT_VAR(data__->EXPT37_OUT,0,retain)
+}
+
+// Code part
+void TEST_3_body__(TEST_3 *data__) {
+  // Initialise TEMP variables
+
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_NODE,,__GET_VAR(data__->ID_NODE,));
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_OBJ,,__GET_VAR(data__->I_OBJ,));
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
+  LOAD_SOCKET_NODE_body__(&data__->LOAD_SOCKET_NODE0);
+  __SET_VAR(data__->SAVE_FOR_ALGORITM0.,ID_NODE,,__GET_VAR(data__->ID_NODE_ALGORITM,));
+  __SET_VAR(data__->SAVE_FOR_ALGORITM0.,ID_OBJ,,__GET_VAR(data__->I_OBJ,));
+  __SET_VAR(data__->SAVE_FOR_ALGORITM0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
+  __SET_VAR(data__->SAVE_FOR_ALGORITM0.,D_VALUE,,__GET_VAR(data__->EXPT37_OUT,));
+  SAVE_FOR_ALGORITM_body__(&data__->SAVE_FOR_ALGORITM0);
+  __SET_VAR(data__->LOAD_FOR_ALGORITM0.,ID_NODE,,__GET_VAR(data__->ID_NODE_ALGORITM,));
+  __SET_VAR(data__->LOAD_FOR_ALGORITM0.,ID_OBJ,,__GET_VAR(data__->I_OBJ,));
+  __SET_VAR(data__->LOAD_FOR_ALGORITM0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
+  LOAD_FOR_ALGORITM_body__(&data__->LOAD_FOR_ALGORITM0);
+  __SET_VAR(data__->,D_VALUE,,__GET_VAR(data__->LOAD_SOCKET_NODE0.D_VALUE,));
+  __SET_VAR(data__->,EXPT37_OUT,,EXPT__REAL__REAL__SINT(
+    (BOOL)__BOOL_LITERAL(TRUE),
+    NULL,
+    (REAL)__GET_VAR(data__->D_VALUE,),
+    (SINT)2));
+  __SET_VAR(data__->,D_VAL_OUT_1,,__GET_VAR(data__->EXPT37_OUT,));
+
+  goto __end;
+
+__end:
+  return;
+} // TEST_3_body__() 
+
+
+
+
+
+void TEST_2_init__(TEST_2 *data__, BOOL retain) {
+  __INIT_VAR(data__->ID_NODE,1,retain)
+  __INIT_VAR(data__->I_OBJ,4096,retain)
+  __INIT_VAR(data__->I_SUBOBJ,0,retain)
+  __INIT_VAR(data__->D_VALUE,0,retain)
+  LOAD_SOCKET_NODE_init__(&data__->LOAD_SOCKET_NODE0,retain);
+}
+
+// Code part
+void TEST_2_body__(TEST_2 *data__) {
+  // Initialise TEMP variables
+
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_NODE,,__GET_VAR(data__->ID_NODE,));
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_OBJ,,__GET_VAR(data__->I_OBJ,));
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
+  LOAD_SOCKET_NODE_body__(&data__->LOAD_SOCKET_NODE0);
+  __SET_VAR(data__->,D_VALUE,,__GET_VAR(data__->LOAD_SOCKET_NODE0.D_VALUE,));
+
+  goto __end;
+
+__end:
+  return;
+} // TEST_2_body__() 
+
+
+
+
+
 void SET_SOCKET_NODE_init__(SET_SOCKET_NODE *data__, BOOL retain) {
   __INIT_VAR(data__->EN,__BOOL_LITERAL(TRUE),retain)
   __INIT_VAR(data__->ENO,__BOOL_LITERAL(TRUE),retain)
@@ -619,6 +832,52 @@ void SET_SOCKET_NODE_body__(SET_SOCKET_NODE *data__) {
 __end:
   return;
 } // SET_SOCKET_NODE_body__() 
+
+
+
+
+
+void TEST_1_init__(TEST_1 *data__, BOOL retain) {
+  __INIT_VAR(data__->ID_NODE,1,retain)
+  __INIT_VAR(data__->I_OBJ,4096,retain)
+  __INIT_VAR(data__->I_OBJ_1,4097,retain)
+  __INIT_VAR(data__->I_SUBOBJ,0,retain)
+  __INIT_VAR(data__->TRIGGER0,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->S_OUT,__STRING_LITERAL(0,""),retain)
+  __INIT_VAR(data__->D_VALUE,0,retain)
+  __INIT_VAR(data__->D_VAL_OUT_1,0,retain)
+  LOAD_SOCKET_NODE_init__(&data__->LOAD_SOCKET_NODE0,retain);
+  __INIT_VAR(data__->CYCLE,__STRING_LITERAL(5,"0:0:1"),retain)
+  SET_SOCKET_NODE_init__(&data__->SET_SOCKET_NODE0,retain);
+  __INIT_VAR(data__->EXPT31_OUT,0,retain)
+}
+
+// Code part
+void TEST_1_body__(TEST_1 *data__) {
+  // Initialise TEMP variables
+
+  __SET_VAR(data__->SET_SOCKET_NODE0.,ID_NODE,,__GET_VAR(data__->ID_NODE,));
+  __SET_VAR(data__->SET_SOCKET_NODE0.,ID_OBJ,,__GET_VAR(data__->I_OBJ_1,));
+  __SET_VAR(data__->SET_SOCKET_NODE0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
+  __SET_VAR(data__->SET_SOCKET_NODE0.,D_VALUE,,__GET_VAR(data__->EXPT31_OUT,));
+  SET_SOCKET_NODE_body__(&data__->SET_SOCKET_NODE0);
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_NODE,,__GET_VAR(data__->ID_NODE,));
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_OBJ,,__GET_VAR(data__->I_OBJ,));
+  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
+  LOAD_SOCKET_NODE_body__(&data__->LOAD_SOCKET_NODE0);
+  __SET_VAR(data__->,D_VALUE,,__GET_VAR(data__->LOAD_SOCKET_NODE0.D_VALUE,));
+  __SET_VAR(data__->,EXPT31_OUT,,EXPT__REAL__REAL__SINT(
+    (BOOL)__BOOL_LITERAL(TRUE),
+    NULL,
+    (REAL)__GET_VAR(data__->D_VALUE,),
+    (SINT)2));
+  __SET_VAR(data__->,D_VAL_OUT_1,,__GET_VAR(data__->EXPT31_OUT,));
+
+  goto __end;
+
+__end:
+  return;
+} // TEST_1_body__() 
 
 
 
@@ -674,52 +933,6 @@ void MAINSERVER_body__(MAINSERVER *data__) {
 __end:
   return;
 } // MAINSERVER_body__() 
-
-
-
-
-
-void TEST_1_init__(TEST_1 *data__, BOOL retain) {
-  __INIT_VAR(data__->ID_NODE,1,retain)
-  __INIT_VAR(data__->I_OBJ,4096,retain)
-  __INIT_VAR(data__->I_OBJ_1,4097,retain)
-  __INIT_VAR(data__->I_SUBOBJ,0,retain)
-  __INIT_VAR(data__->TRIGGER0,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->S_OUT,__STRING_LITERAL(0,""),retain)
-  __INIT_VAR(data__->D_VALUE,0,retain)
-  __INIT_VAR(data__->D_VAL_OUT_1,0,retain)
-  LOAD_SOCKET_NODE_init__(&data__->LOAD_SOCKET_NODE0,retain);
-  __INIT_VAR(data__->CYCLE,__STRING_LITERAL(5,"0:0:1"),retain)
-  SET_SOCKET_NODE_init__(&data__->SET_SOCKET_NODE0,retain);
-  __INIT_VAR(data__->EXPT31_OUT,0,retain)
-}
-
-// Code part
-void TEST_1_body__(TEST_1 *data__) {
-  // Initialise TEMP variables
-
-  __SET_VAR(data__->SET_SOCKET_NODE0.,ID_NODE,,__GET_VAR(data__->ID_NODE,));
-  __SET_VAR(data__->SET_SOCKET_NODE0.,ID_OBJ,,__GET_VAR(data__->I_OBJ_1,));
-  __SET_VAR(data__->SET_SOCKET_NODE0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
-  __SET_VAR(data__->SET_SOCKET_NODE0.,D_VALUE,,__GET_VAR(data__->EXPT31_OUT,));
-  SET_SOCKET_NODE_body__(&data__->SET_SOCKET_NODE0);
-  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_NODE,,__GET_VAR(data__->ID_NODE,));
-  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_OBJ,,__GET_VAR(data__->I_OBJ,));
-  __SET_VAR(data__->LOAD_SOCKET_NODE0.,ID_SUBOBJ,,__GET_VAR(data__->I_SUBOBJ,));
-  LOAD_SOCKET_NODE_body__(&data__->LOAD_SOCKET_NODE0);
-  __SET_VAR(data__->,D_VALUE,,__GET_VAR(data__->LOAD_SOCKET_NODE0.D_VALUE,));
-  __SET_VAR(data__->,EXPT31_OUT,,EXPT__REAL__REAL__SINT(
-    (BOOL)__BOOL_LITERAL(TRUE),
-    NULL,
-    (REAL)__GET_VAR(data__->D_VALUE,),
-    (SINT)2));
-  __SET_VAR(data__->,D_VAL_OUT_1,,__GET_VAR(data__->EXPT31_OUT,));
-
-  goto __end;
-
-__end:
-  return;
-} // TEST_1_body__() 
 
 
 

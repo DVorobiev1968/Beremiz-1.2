@@ -46,6 +46,16 @@ def set_socket_node(id_Node, id_Obj, d_value=0, idSubObj=0, host="", port=0):
     socketClient = SocketClient()
     socketClient.set_socket_node(id_Node,id_Obj,socketClient.mesPacked.CODE_SINGLE_START,d_value)
 
+def save_for_algoritm(id_Node, id_Obj, d_value=0, idSubObj=0, host="", port=0):
+    global mesPacked
+    
+    if len(host)<1:
+        host = loadSettings(1, mesPacked)
+    if port<1:
+        port = loadSettings(2, mesPacked)
+    socketClient = SocketClient()
+    socketClient.save_for_algoritm(id_Node,id_Obj,d_value)
+
 def load_socket_node(id_Node, id_Obj, idSubObj=0, host="", port=0):
     global mesPacked
 
@@ -55,6 +65,18 @@ def load_socket_node(id_Node, id_Obj, idSubObj=0, host="", port=0):
         port = loadSettings(2, mesPacked)
     socketClient = SocketClient()
     d_value=socketClient.load_socket_node(id_Node, id_Obj)
+
+    return d_value
+
+def load_for_algoritm(id_Node, id_Obj, idSubObj=0, host="", port=0):
+    global mesPacked
+
+    if len(host)<1:
+        host = loadSettings(1, mesPacked)
+    if port<1:
+        port = loadSettings(2, mesPacked)
+    socketClient = SocketClient()
+    d_value=socketClient.load_for_algoritm(id_Node, id_Obj)
 
     return d_value
 
